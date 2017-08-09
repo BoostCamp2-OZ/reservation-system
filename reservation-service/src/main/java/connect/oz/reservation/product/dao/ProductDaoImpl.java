@@ -2,6 +2,7 @@ package connect.oz.reservation.product.dao;
 
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -46,14 +47,13 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public int selectProductCount() {
+    public int selectProductCount() throws EmptyResultDataAccessException{
         Map<String, Object> params = Collections.emptyMap();
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCTS_COUNT, params, Integer.class);
-
     }
 
     @Override
-    public int selectProductCountByCategoryId(Long categoryId) {
+    public int selectProductCountByCategoryId(Long categoryId) throws EmptyResultDataAccessException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("categoryId", categoryId);
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCTS_COUNT_BY_CATEGORY_ID, params, Integer.class);

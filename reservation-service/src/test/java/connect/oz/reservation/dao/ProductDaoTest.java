@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -36,14 +37,38 @@ public class ProductDaoTest {
 
     @Test
     public void shouldSelectProductCount() {
-        Integer count = productDao.selectProductCount();
+
+        Integer count = null;
+        try {
+            count = productDao.selectProductCount();
+        }catch (EmptyResultDataAccessException e){
+            count = null;
+        }
         Assert.assertNotNull(count);
     }
 
     @Test
     public void shouldSelectProductCountByCategoryId() {
         Long categoryId = 1L;
-        Integer count = productDao.selectProductCountByCategoryId(categoryId);
+        Integer count = null;
+        try {
+            count = productDao.selectProductCountByCategoryId(categoryId);
+        }catch (EmptyResultDataAccessException e){
+            count = null;
+        }
         Assert.assertNotNull(count);
+    }
+
+    @Test
+    public void shouldSelectProductCountByCategoryIdError() {
+        Long categortId = 6L;
+        Integer count = null;
+        try {
+            count = productDao.selectProductCountByCategoryId(categortId);
+        }catch (EmptyResultDataAccessException e){
+            count = null;
+        }
+        Assert.assertNotNull(count);
+
     }
 }

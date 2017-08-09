@@ -1,6 +1,7 @@
 package connect.oz.reservation.product.dao;
 
 import connect.oz.reservation.product.Dto.SimpleProductDto;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
@@ -9,7 +10,8 @@ public interface ProductDao {
 
     List<SimpleProductDto> selectProductsByCategoryId(Long categoryId, int offset);
 
-    int selectProductCount();
+    int selectProductCount() throws EmptyResultDataAccessException;
 
-    int selectProductCountByCategoryId(Long categoryId);
+    int selectProductCountByCategoryId(Long categoryId) throws EmptyResultDataAccessException;
+
 }

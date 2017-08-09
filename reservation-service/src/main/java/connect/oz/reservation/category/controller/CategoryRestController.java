@@ -18,6 +18,6 @@ public class CategoryRestController {
 
     @GetMapping
     public List<Category> selectCategories() {
-        return null;
+        return categoryService.selectCategories();
     }
 }
