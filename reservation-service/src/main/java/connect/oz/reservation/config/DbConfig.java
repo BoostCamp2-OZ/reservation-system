@@ -27,6 +27,12 @@ public class DbConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+    @Value("${main.product.limit}")
+    private int mainProductLimit;
+
+    @Value("${detail.comment.limit}")
+    private int commentLimit;
+
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
@@ -40,5 +46,10 @@ public class DbConfig {
     @Bean
     public PlatformTransactionManager transactionManger() {
         return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    public int getMainProductLimit() {
+        return mainProductLimit;
     }
 }

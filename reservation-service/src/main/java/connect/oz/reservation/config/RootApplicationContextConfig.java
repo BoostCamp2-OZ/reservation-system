@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-
 @ComponentScan(basePackages = {
         "connect.oz.reservation.category.dao",
         "connect.oz.reservation.category.service",

@@ -136,6 +136,6 @@ target
 
 # for js
 node_modules/
-
+*.properties
 
 
