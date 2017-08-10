@@ -150,7 +150,7 @@
 <script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
 <script src="/resources/js/common/util.js"></script>
 <script src="/resources/js/mainPageList.js"></script>
-<script src="/resources/js/component/moveComonent.js"></script>
+<script src="/resources/js/component/moveComponent.js"></script>
 <script src="/resources/js/component/rollingComponent.js"></script>
 <script src="/resources/js/mainPage.js"></script>
 
