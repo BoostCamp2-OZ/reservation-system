@@ -1,7 +1,10 @@
 $(function () {
     mainPageList.init();
 
-    var slider = new Slider($('div.group_visual'));
+    var rolling = new RollingComponent($('div.group_visual'), {
+        circulation: false,
+        autoStart: false
+    });
 
 });
 
