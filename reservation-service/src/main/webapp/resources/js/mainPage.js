@@ -1,77 +1,111 @@
 var mainPage = (function () {
 
-    var source = $('#categoryTemplate').html();
-    var categoryTemplate = Handlebars.compile(source);
-    var $categoryList = $('ul.event_tab_lst');
+    
+    var Templates = {};
+    var $productContainer = $('.wrap_event_box');
 
-    var productSource = $('#productTemplate').html();
-    var productTemplate = Handlebars.compile(productSource);
 
     function init() {
-        getProducts();
-        $categoryList.on('click', 'a.anchor', changeCategory);
+        _eventBinding();
+        _handlebarInit();
+        _getCategories();
+        _getProducts();
     }
 
-    function getProducts() {
-        var categoryId = $categoryList.find('.active').closest('.item').data('category');
-        var offset = $('.wrap_event_box').find('.item').length;
-        $.ajax({
+
+    function _eventBinding() {
+
+        $('ul.event_tab_lst').on('click', 'a.anchor', _changeCategory);
+        $('.more').on('click', '.btn', _moreProducts);
+    }
+
+
+    function _handlebarInit() {
+        Templates.category = Handlebars.compile($('#categoryTemplate').html());
+        Templates.product = Handlebars.compile($('#productTemplate').html());
+    }
+
+
+    function _getProducts(offset) {
+        if (offset === undefined) offset = 0;
+
+        var categoryId = $('.active').closest('.item').data('category');
+
+        ajaxModule.ajax({
             url: '/api/products/categories/' + categoryId + '/offset/' + offset,
-            method: "GET",
-            success: function (data) {
-                console.log(data);
-                var leftProductContainer = "";
-                var rightProductContainer = "";
-                for(var i = 0, l = data.products.length; i < l; i++){
-                    if(i%2){
-                        //left
-                        leftProductContainer += productTemplate(data.products[i]);
-                    }else{
-                        //right
-                        rightProductContainer += productTemplate(data.products[i]);
-                    }
-                }
-                $('.lst_event_box.left').append(leftProductContainer);
-                $('.lst_event_box.right').append(rightProductContainer);
-            }
-        })
-    }
-
-    function changeCategory(e) {
-        var $currentTarget = $(e.currentTarget);
-        $currentTarget.closest('.event_tab_lst').find('.active').removeClass('active');
-        $currentTarget.addClass('active');
-        getProducts();
-    }
-
-    function left() {
+            method: 'GET'
+        }, function (data) {
+            _productRendering('html', data);
+        });
 
     }
 
-    function right() {
 
-    }
+    function _moreProducts() {
+        var offset = $productContainer.find('.item').length;
+        var categoryId = $('.active').closest('.item').data('category');
 
-    function getCategory() {
-        var categoryContanier = "";
-        $.ajax({
-            url: '/api/categories',
-            method: 'GET',
-            success: function (data) {
-                console.log(data);
-                $categoryList.append(categoryTemplate(data));
-            }
+        ajaxModule.ajax({
+            url: '/api/products/categories/' + categoryId + '/offset/' + offset,
+            method: 'GET'
+        }, function (data) {
+            _productRendering('append', data);
         });
     }
 
+
+    function _productRendering(type, data) {
+        var leftSection = '';
+        var rightSection = '';
+        var products = data.products;
+
+        var $leftSection = $productContainer.find('.left');
+        var $rightSection = $productContainer.find('.right');
+
+
+        for (var i = 0, l = products.length; i < l; i++) {
+            if (i % 2) {
+                leftSection += Templates.product(products[i]);
+            } else {
+                rightSection += Templates.product(products[i]);
+            }
+        }
+
+        $leftSection[type](leftSection);
+        $rightSection[type](rightSection);
+    }
+
+
+    function _categoryRendering(data) {
+        $('ul.event_tab_lst').append(Templates.category(data));
+    }
+
+
+    function _changeCategory(e) {
+        var $currentTarget = $(e.currentTarget);
+        $currentTarget.closest('.event_tab_lst').find('.active').removeClass('active');
+        $currentTarget.addClass('active');
+        _getProducts();
+    }
+
+
+    function _getCategories() {
+
+        ajaxModule.ajax({
+            url: '/api/categories',
+            method: 'GET'
+        }, _categoryRendering);
+
+    }
+
+
     return {
-        init: init,
-        getCategory: getCategory
+        init: init
     }
 
 })();
+
 $(function () {
     mainPage.init();
-    mainPage.getCategory();
 });
 

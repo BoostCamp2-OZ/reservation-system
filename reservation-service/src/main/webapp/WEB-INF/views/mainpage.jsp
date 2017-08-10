@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,20 +12,24 @@
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
     <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script id="categoryTemplate", type="text/x-handlears-template">
+    <script id="categoryTemplate" , type="text/x-handlears-template">
         {{#each this}}
         <li class="item" data-category="{{id}}">
             <a class="anchor"> <span>{{name}}</span> </a>
         </li>
         {{/each}}
     </script>
-    <script id="productTemplate", type="text/x-handlears-template">
+    <script id="productTemplate" , type="text/x-handlears-template">
 
         <li class="item">
             <a href="#" class="item_book">
-                <div class="item_preview"> <img alt="뮤지컬 인 더 하이츠(IN THE HEIGHTS)" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170111_225/1484116579024rNkXW_JPEG/2016_%B9%C2%C1%F6%C4%C3_%C0%CE_%B4%F5_%C7%CF%C0%CC%C3%F7_%C6%F7%BD%BA%C5%CD%2820MB%29.jpg?type=l591_945">                                    <span class="img_border"></span> </div>
+                <div class="item_preview"><img alt="뮤지컬 인 더 하이츠(IN THE HEIGHTS)" class="img_thumb"
+                                               src="https://ssl.phinf.net/naverbooking/20170111_225/1484116579024rNkXW_JPEG/2016_%B9%C2%C1%F6%C4%C3_%C0%CE_%B4%F5_%C7%CF%C0%CC%C3%F7_%C6%F7%BD%BA%C5%CD%2820MB%29.jpg?type=l591_945">
+                    <span class="img_border"></span></div>
                 <div class="event_txt">
-                    <h4 class="event_txt_tit"> <span>{{name}}</span> <small class="sm">{{placeName}}</small> </h4>
+                    <h4 class="event_txt_tit"><span>{{name}}</span>
+                        <small class="sm">{{placeName}}</small>
+                    </h4>
                     <p class="event_txt_dsc">{{description}}</p>
                 </div>
             </a>
@@ -51,20 +55,24 @@
                 <div class="container_visual">
                     <div class="prev_e">
                         <div class="prev_inn">
-                            <a href="#" class="btn_pre_e" title="이전"> <i class="spr_book_event spr_event_pre">이전</i> </a>
+                            <a href="#" class="btn_pre_e" title="이전"> <i class="spr_book_event spr_event_pre">이전</i>
+                            </a>
                         </div>
                     </div>
                     <div class="nxt_e">
                         <div class="nxt_inn">
-                            <a href="#" class="btn_nxt_e" title="다음"> <i class="spr_book_event spr_event_nxt">다음</i> </a>
+                            <a href="#" class="btn_nxt_e" title="다음"> <i class="spr_book_event spr_event_nxt">다음</i>
+                            </a>
                         </div>
                     </div>
                     <div>
                         <div class="container_visual">
                             <!-- [D] 이전,다음 버튼을 클릭할때마다 캐러셀 형태로 순환 됨 --->
                             <ul class="visual_img">
-                                <li class="item" style="background-image: url(http://naverbooking.phinf.naver.net/20170209_66/1486628146913la6nC_JPEG/image.jpg); width: 338px;">
-                                    <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
+                                <li class="item"
+                                    style="background-image: url(http://naverbooking.phinf.naver.net/20170209_66/1486628146913la6nC_JPEG/image.jpg); width: 338px;">
+                                    <a href="#"> <span class="img_btm_border"></span> <span
+                                            class="img_right_border"></span> <span class="img_bg_gra"></span>
                                         <div class="event_txt">
                                             <h4 class="event_txt_tit"></h4>
                                             <p class="event_txt_adr"></p>
@@ -72,8 +80,10 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="item" style="background-image: url(http://naverbooking.phinf.naver.net/20170119_48/1484802596907hmVDm_JPEG/image.jpg); width: 338px;">
-                                    <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
+                                <li class="item"
+                                    style="background-image: url(http://naverbooking.phinf.naver.net/20170119_48/1484802596907hmVDm_JPEG/image.jpg); width: 338px;">
+                                    <a href="#"> <span class="img_btm_border"></span> <span
+                                            class="img_right_border"></span> <span class="img_bg_gra"></span>
                                         <div class="event_txt">
                                             <h4 class="event_txt_tit">뮤지컬-김종욱찾기 네이버 예약</h4>
                                             <p class="event_txt_adr">대학로 쁘띠첼씨어터</p>
@@ -81,8 +91,10 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="item" style="background-image: url(http://naverbooking.phinf.naver.net/20170209_66/1486628146913la6nC_JPEG/image.jpg); width: 338px;">
-                                    <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
+                                <li class="item"
+                                    style="background-image: url(http://naverbooking.phinf.naver.net/20170209_66/1486628146913la6nC_JPEG/image.jpg); width: 338px;">
+                                    <a href="#"> <span class="img_btm_border"></span> <span
+                                            class="img_right_border"></span> <span class="img_bg_gra"></span>
                                         <div class="event_txt">
                                             <h4 class="event_txt_tit"></h4>
                                             <p class="event_txt_adr"></p>
@@ -133,8 +145,8 @@
     </div>
 </footer>
 </body>
-    <script src="/resources/node_modules/jquery/dist/jquery.js"></script>
-
-    <script src="/resources/js/mainPage.js"></script>
+<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
+<script src="/resources/js/module/ajaxModule.js"></script>
+<script src="/resources/js/mainPage.js"></script>
 
 </html>
