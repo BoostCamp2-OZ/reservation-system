@@ -27,9 +27,12 @@ var RollingComponent = extend(eg.Component, {
     },
 
     moveComponentInit: function () {
-        this.mcInst = new MoveComponent($(this.slider));
+        this.mcInst = new MoveComponent($(this.slider), {
+            circulation : this.options.circulation
+        });
         this.mcInst.on({
-            'afterMove': this.updateStatus.bind(this)
+            'afterMove': this.updateStatus.bind(this),
+            'beforeMove': this.updateStatus.bind(this)
         });
     },
 
