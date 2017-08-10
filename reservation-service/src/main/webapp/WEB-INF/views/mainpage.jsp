@@ -147,6 +147,9 @@
 </body>
 <script src="/resources/node_modules/jquery/dist/jquery.js"></script>
 <script src="/resources/js/module/ajaxModule.js"></script>
+<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
+<script src="/resources/js/common/util.js"></script>
+<script src="/resources/js/slider.js"></script>
 <script src="/resources/js/mainPage.js"></script>
 
 </html>
