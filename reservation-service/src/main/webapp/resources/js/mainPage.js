@@ -1,8 +1,9 @@
 var mainPage = (function () {
 
-    
+
     var Templates = {};
     var $productContainer = $('.wrap_event_box');
+    var activeIndex = 0;
 
 
     function init() {
@@ -57,6 +58,7 @@ var mainPage = (function () {
     function _productRendering(type, data) {
         var leftSection = '';
         var rightSection = '';
+        var totalCount = data.totalCount;
         var products = data.products;
 
         var $leftSection = $productContainer.find('.left');
@@ -65,14 +67,16 @@ var mainPage = (function () {
 
         for (var i = 0, l = products.length; i < l; i++) {
             if (i % 2) {
-                leftSection += Templates.product(products[i]);
-            } else {
                 rightSection += Templates.product(products[i]);
+            } else {
+                leftSection += Templates.product(products[i]);
             }
         }
 
         $leftSection[type](leftSection);
         $rightSection[type](rightSection);
+
+        _changeProductsCount(totalCount);
     }
 
 
@@ -83,9 +87,20 @@ var mainPage = (function () {
 
     function _changeCategory(e) {
         var $currentTarget = $(e.currentTarget);
-        $currentTarget.closest('.event_tab_lst').find('.active').removeClass('active');
+        var $currentActive = $('.event_tab_lst li[data-category="' + activeIndex + '"] a');
+
+        $currentActive.removeClass('active');
         $currentTarget.addClass('active');
+
+        activeIndex = $currentTarget.closest('li').data('category');
+
         _getProducts();
+    }
+
+
+    function _changeProductsCount(totalCount) {
+        $countText = $('.event_lst_txt span.pink');
+        $countText.text(totalCount + '개');
     }
 
 
@@ -99,8 +114,16 @@ var mainPage = (function () {
     }
 
 
+    function infinityScroll(isActive) {
+        if(!isActive) {
+            return false;
+        }
+    }
+
+
     return {
-        init: init
+        init: init,
+        infinityScroll: infinityScroll
     }
 
 })();
