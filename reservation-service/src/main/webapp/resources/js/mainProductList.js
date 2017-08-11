@@ -1,4 +1,4 @@
-var mainPageList = (function(){
+var mainProductList = (function(){
 
     var Templates = {};
     var $productContainer = $('.wrap_event_box');
@@ -16,7 +16,7 @@ var mainPageList = (function(){
     function _eventBinding() {
 
         $('ul.event_tab_lst').on('click', 'a.anchor', _changeCategory);
-        $('.more').on('click', '.btn', _moreProducts);
+        $('.more').on('click', '.btn', getMoreProducts);
     }
 
 
@@ -40,7 +40,7 @@ var mainPageList = (function(){
 
     }
 
-    function _moreProducts() {
+    function getMoreProducts() {
         var offset = $productContainer.find('.item').length;
         var categoryId = $('.active').closest('.item').data('category');
 
@@ -62,7 +62,6 @@ var mainPageList = (function(){
         var $leftSection = $productContainer.find('.left');
         var $rightSection = $productContainer.find('.right');
 
-
         for (var i = 0, l = products.length; i < l; i++) {
             if (i % 2) {
                 rightSection += Templates.product(products[i]);
@@ -75,6 +74,7 @@ var mainPageList = (function(){
         $rightSection[type](rightSection);
 
         _changeProductsCount(totalCount);
+
     }
 
 
@@ -112,16 +112,9 @@ var mainPageList = (function(){
     }
 
 
-    function infinityScroll(isActive) {
-        if(!isActive) {
-            return false;
-        }
-    }
-
-
     return {
         init: init,
-        infinityScroll: infinityScroll
+        getMoreProducts : getMoreProducts
     }
 
 })();

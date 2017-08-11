@@ -1,7 +1,5 @@
 var RollingComponent = extend(eg.Component, {
-    // setinterval 관리,
-    // clickinterval 관리
-    // autostart 관리
+
 
     init: function ($root, options) {
         this.options = {
@@ -11,65 +9,74 @@ var RollingComponent = extend(eg.Component, {
             clickTimer: null
         };
 
+        this.options = Object.assign({}, this.options, options);
+
         this.$root = $root;
         this.slider = this.$root.find('ul.visual_img')[0];
 
-        this.moveComponentInit();
-        this.eventBind();
-        this.autoMoving();
+        this._moveComponentInit();
+        this._eventBind();
+        if(this.options.autoStart) this._autoStart();
 
     },
 
-    updateStatus: function (options) {
+
+    _updateStatus: function (options) {
         // 여기서 업데이트
-        this.status = options;
-        console.log('updateStatus', this.status);
     },
 
-    moveComponentInit: function () {
+
+    _moveComponentInit: function () {
         this.mcInst = new MoveComponent($(this.slider), {
             circulation : this.options.circulation
         });
         this.mcInst.on({
-            'afterMove': this.updateStatus.bind(this),
-            'beforeMove': this.updateStatus.bind(this)
+            'afterMove': this._updateStatus.bind(this),
+            'beforeMove': this._updateStatus.bind(this)
         });
     },
 
-    eventBind: function () {
-        this.$root.on('click', '.prev_e', this.movePrev.bind(this));
-        this.$root.on('click', '.nxt_e', this.moveNext.bind(this));
+
+    _eventBind: function () {
+        this.$root.on('click', '.prev_e', this._movePrev.bind(this));
+        this.$root.on('click', '.nxt_e', this._moveNext.bind(this));
     },
 
 
-    movePrev: function () {
-        this.stopMoving();
-
+    _movePrev: function () {
+        this._stopAutoRolling();
         this.mcInst.move('prev', 0);
-
     },
 
-    moveNext: function () {
-        this.stopMoving();
 
+    _moveNext: function () {
+        this._stopAutoRolling();
         this.mcInst.move('next', 0);
     },
 
-    moveSlider: function () {
-        $(this.slider).animate({'left': -this.moveRange * this.currentIndex});
+
+    _autoStart: function () {
+        var options = this.options;
+
+        options.intervalTimer = setInterval(function(){
+            this.mcInst.move('next');
+        }.bind(this), 2000);
     },
 
-    autoMoving: function () {
-        this.interval = setInterval(this.moveNext.bind(this), 2000);
-    },
 
-    stopMoving: function () {
-        if (this.interval != null) {
-            clearInterval(this.interval);
+    _stopAutoRolling: function () {
+        var options = this.options;
+
+        options.intervalTimer != null
+        && clearInterval(options.intervalTimer);
+
+        clearTimeout(options.clickTimer);
+
+        if(options.autoStart) {
+            options.clickTimer = setTimeout(function() {
+                this._autoStart();
+            }.bind(this), 2000);
         }
-        if (this.timeout != null) {
-            clearTimeout(this.timeout);
-        }
-        this.timeout = setTimeout(this.autoMoving.bind(this), 2000);
     }
+
 });

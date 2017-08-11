@@ -1,7 +1,5 @@
 var ajaxModule = (function ($) {
 
-    var categoryId;
-    var offset;
     var cachedData = {};
 
     function cachingAjax(options, callback) {
@@ -11,7 +9,7 @@ var ajaxModule = (function ($) {
             callback(cachingData);
         } else {
 
-            var result = $.ajax({
+            $.ajax({
 
                 url: options.url,
                 method: options.method || 'GET',
@@ -24,7 +22,6 @@ var ajaxModule = (function ($) {
                 callback(json);         // callback function
             });
         }
-
     }
 
     return {
