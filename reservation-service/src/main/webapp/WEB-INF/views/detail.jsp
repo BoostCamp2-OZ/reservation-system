@@ -264,5 +264,11 @@
 </footer>
 <div id="photoviwer"></div>
 </body>
-
+<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
+<script src="/resources/js/module/ajaxModule.js"></script>
+<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
+<script src="/resources/js/common/util.js"></script>
+<script src="/resources/js/component/moveComponent.js"></script>
+<script src="/resources/js/component/flickingComponent.js"></script>
+<script src="/resources/js/detailPage.js"></script>
 </html>
