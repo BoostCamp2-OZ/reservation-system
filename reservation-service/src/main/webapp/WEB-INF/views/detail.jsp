@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 
@@ -18,8 +19,8 @@
     <div class="header fade">
         <header class="header_tit">
             <h1 class="logo">
-                <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-                <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
+                <a href="/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
+                <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
             </h1>
             <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
         </header>
@@ -29,8 +30,8 @@
             <div class="section_visual">
                 <header>
                     <h1 class="logo">
-                        <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-                        <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
+                        <a href="/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
+                        <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
                     </h1>
                     <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
                 </header>
@@ -38,60 +39,58 @@
                     <div class="bg_pagination"></div>
                     <div class="figure_pagination">
                         <span class="num">1</span>
-                        <span class="num off">/ <span>3</span></span>
+                        <span class="num off">/ <span>${fn:length(product.files)}</span></span>
                     </div>
                 </div>
                 <div class="group_visual">
                     <div>
                         <div class="container_visual" style="width: 414px;">
                             <ul class="visual_img">
-                                <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                    <div class="visual_txt">
-                                        <div class="visual_txt_inn">
-                                            <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
-                                            <p class="visual_txt_dsc"></p>
+                                <c:forEach var = "image" items = "${product.files}" varStatus="status">
+                                    <c:choose>
+                                        <c:when test="${status.first}">
+                                            <c:set var="productName" value="${product.name}"/>
+                                            <c:set var="productDesc" value="${product.description}"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="productName" value=""/>
+                                            <c:set var="productDesc" value=""/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
+                                        <div class="visual_txt">
+                                            <div class="visual_txt_inn">
+                                                <h2 class="visual_txt_tit" data-id="${product.id}"> <span>${product.name}</span> </h2>
+                                                <p class="visual_txt_dsc">${product.description}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                    <div class="visual_txt">
-                                        <div class="visual_txt_inn">
-                                            <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
-                                            <p class="visual_txt_dsc"></p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                    <div class="visual_txt">
-                                        <div class="visual_txt_inn">
-                                            <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
-                                            <p class="visual_txt_dsc"></p>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
-                        <div class="prev">
-                            <div class="prev_inn">
-                                <a href="#" class="btn_prev" title="이전">
-                                    <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
-                                    <i class="spr_book2 ico_arr6_lt off"></i>
-                                </a>
+                        <c:if test="${imageCount ne '1'}">
+                            <div class="prev">
+                                <div class="prev_inn">
+                                    <a href="#" class="btn_prev" title="이전">
+                                        <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
+                                        <i class="spr_book2 ico_arr6_lt off"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="nxt">
-                            <div class="nxt_inn">
-                                <a href="#" class="btn_nxt" title="다음">
-                                    <i class="spr_book2 ico_arr6_rt"></i>
-                                </a>
+                            <div class="nxt">
+                                <div class="nxt_inn">
+                                    <a href="#" class="btn_nxt" title="다음">
+                                        <i class="spr_book2 ico_arr6_rt"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        </c:if>
                     </div>
                 </div>
                 <div class="group_btn_goto">
-                    <a class="btn_goto_home" title="홈페이지" href="#" target="siteUrl"> <i class="fn fn-home1"></i> </a>
-                    <a class="btn_goto_tel" title="전화" href="#"> <i class="fn fn-call1"></i> </a>
-                    <a class="btn_goto_mail" title="이메일" href="#"> <i class="fn fn-mail1"></i> </a>
+                    <a class="btn_goto_home" title="홈페이지" href="${product.homepage}" target="siteUrl"> <i class="fn fn-home1"></i> </a>
+                    <a class="btn_goto_tel" title="전화" href="tel:${product.tel}"> <i class="fn fn-call1"></i> </a>
+                    <a class="btn_goto_mail" title="이메일" href="mailTo:${product.email}"> <i class="fn fn-mail1"></i> </a>
                     <a href="#" class="btn_goto_path" title="길찾기"> <i class="fn fn-path-find1"></i> </a>
                     <a href="#" class="fn fn-share1 naver-splugin btn_goto_share" title="공유하기"></a>
                 </div>
@@ -100,7 +99,7 @@
                 <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                 <div class="store_details close3">
                     <p class="dsc">
-                        웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
+                        ${product.content}
                     </p>
                 </div>
                 <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
@@ -113,7 +112,7 @@
                         <h4 class="in_tit"> <i class="spr_book ico_evt"></i> <span>이벤트 정보</span> </h4>
                     </div>
                     <div class="event_info">
-                        <div class="in_dsc">[네이버예약 특별할인]<br>R석 50%, S석 60% 할인</div>
+                        <div class="in_dsc">${product.event}</div>
                     </div>
                 </div>
             </div>
@@ -189,7 +188,7 @@
                                 <li class="detail_info_lst">
                                     <strong class="in_tit">[소개]</strong>
                                     <p class="in_dsc">
-                                        웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다. 웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
+                                        ${product.content}
                                     </p>
                                 </li>
                                 <li class="detail_info_lst"> <strong class="in_tit">[공지사항]</strong>
@@ -214,21 +213,33 @@
                             <span class="img_border"></span>
                             <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
                         </a>
-                        <h3 class="store_name">엔에이치엔티켓링크(주)</h3>
+                        <h3 class="store_name">${product.name}</h3>
                         <div class="store_info">
                             <div class="store_addr_wrap">
                                 <span class="fn fn-pin2"></span>
-                                <p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15 </p>
+                                <p class="store_addr store_addr_bold">${product.placeStreet}</p>
                                 <p class="store_addr">
                                     <span class="addr_old">지번</span>
-                                    <span class="addr_old_detail">서울특별시 종로구 연지동 270 </span>
+                                    <span class="addr_old_detail">${product.placeLot}  </span>
                                 </p>
                                 <p class="store_addr addr_detail">두산아트센터 연강홀</p>
                             </div>
                             <div class="lst_store_info_wrap">
-                                <ul class="lst_store_info">
-                                    <li class="item"> <span class="item_lt"> <i class="fn fn-call2"></i> <span class="sr_only">전화번호</span> </span> <span class="item_rt"> <a href="tel:02-548-0597" class="store_tel">02-548-0597</a></span> </li>
-                                </ul>
+                                <c:if test="${product.tel ne ''}">
+                                    <ul class="lst_store_info">
+                                        <li class="item"> <span class="item_lt"> <i class="fn fn-call2"></i> <span class="sr_only">전화번호</span> </span> <span class="item_rt"> <a href="tel:${product.tel}" class="store_tel">${product.tel}</a></span> </li>
+                                    </ul>
+                                </c:if>
+                                <c:if test="${product.homepage ne ''}">
+                                    <ul class="lst_store_info">
+                                        <li class="item"> <span class="item_lt"> <i class="fn fn-home1"></i> <span class="sr_only">홈페이지</span> </span> <span class="item_rt"> <a href="${product.homepage}" class="store_tel">${product.homepage}</a></span> </li>
+                                    </ul>
+                                </c:if>
+                                <c:if test="${product.email ne ''}">
+                                    <ul class="lst_store_info">
+                                        <li class="item"> <span class="item_lt"> <i class="fn fn-mail1"></i> <span class="sr_only">이메일</span> </span> <span class="item_rt"> <a href="mailto:${product.email}" class="store_tel">${product.email}</a></span> </li>
+                                    </ul>
+                                </c:if>
                             </div>
                         </div>
                         <!-- [D] 모바일 브라우저에서 접근 시 column2 추가와 btn_navigation 요소 추가 -->

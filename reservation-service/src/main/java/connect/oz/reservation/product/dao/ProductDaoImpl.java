@@ -1,5 +1,7 @@
 package connect.oz.reservation.product.dao;
 
+import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,7 +22,8 @@ public class ProductDaoImpl implements ProductDao {
     private DataSource dataSource;
     private NamedParameterJdbcTemplate jdbc;
     private RowMapper<SimpleProductDto> simpleProductRowMapper = BeanPropertyRowMapper.newInstance(SimpleProductDto.class);
-    private RowMapper<Integer> integerRowMapper = BeanPropertyRowMapper.newInstance(Integer.class);
+    private RowMapper<DetailProductDto> detailProductDtoRowMapper = BeanPropertyRowMapper.newInstance(DetailProductDto.class);
+    private RowMapper<File> fileRowMapper = BeanPropertyRowMapper.newInstance(File.class);
 
     @Autowired
     private int mainProductLimit;
@@ -47,7 +50,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public int selectProductCount() throws EmptyResultDataAccessException{
+    public int selectProductCount() throws EmptyResultDataAccessException {
         Map<String, Object> params = Collections.emptyMap();
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCTS_COUNT, params, Integer.class);
     }
@@ -57,5 +60,17 @@ public class ProductDaoImpl implements ProductDao {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("categoryId", categoryId);
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCTS_COUNT_BY_CATEGORY_ID, params, Integer.class);
+    }
+
+    public DetailProductDto selectProductById(Long productId) {
+        Map<String, Object> params = Collections.singletonMap("productId",productId);
+        return jdbc.queryForObject(ProductSqls.SELECT_PRODUCT_BY_ID,params,detailProductDtoRowMapper);
+    }
+
+    @Override
+    public List<File> selectProductImageListById(Long productId) {
+        Map<String, Object> params = Collections.singletonMap("productId",productId);
+
+        return jdbc.query(ProductSqls.SELECT_PRODUCT_IMGAE_LIST, params, fileRowMapper);
     }
 }

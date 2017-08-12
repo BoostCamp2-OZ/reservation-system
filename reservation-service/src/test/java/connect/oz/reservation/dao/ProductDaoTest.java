@@ -1,6 +1,7 @@
 package connect.oz.reservation.dao;
 
 import connect.oz.reservation.config.RootApplicationContextConfig;
+import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
 import org.junit.Assert;
@@ -70,5 +71,13 @@ public class ProductDaoTest {
         }
         Assert.assertNotNull(count);
 
+    }
+
+    @Test
+    public void shouldSelectProductById() {
+        Long productId = 1L;
+
+        DetailProductDto detailProductDto = productDao.selectProductById(productId);
+        Assert.assertNotNull(detailProductDto);
     }
 }

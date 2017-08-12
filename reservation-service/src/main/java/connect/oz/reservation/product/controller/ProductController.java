@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProductController {
 
     @GetMapping("/")
-    public String getMainpage(){
+    public String getMainpage() {
         return "mainpage";
     }
+
+//    @GetMapping("/detail")
+//    public String getDetail() {
+//        return "detail";
+//    }
 
 
 }

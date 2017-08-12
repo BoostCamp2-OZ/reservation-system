@@ -15,14 +15,14 @@ $(function () {
             return false;
         } else {
             $document.scroll(function () {
-                if ($document.height() <= $window.scrollTop + $window.height()) {
+                if ($document.height() <= $window.scrollTop() + $window.height()) {
                     mainProductList.getMoreProducts();
                 }
             });
         }
     }
-
-
     infinityScroll(true);
+
+
 });
 

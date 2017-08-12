@@ -1,5 +1,7 @@
 package connect.oz.reservation.product.service;
 
+import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,13 @@ public class ProductServiceImpl implements ProductService {
         result.put("products", productDtoList);
         result.put("totalCount", count);
         return result;
+    }
+
+    @Override
+    public DetailProductDto selectProductById(Long productId) {
+        DetailProductDto detailProductDto = productDao.selectProductById(productId);
+        List<File> files = productDao.selectProductImageListById(productId);
+        detailProductDto.setFiles(files);
+        return detailProductDto;
     }
 }
