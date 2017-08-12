@@ -1,9 +1,10 @@
 package connect.oz.reservation.product.dao;
 
-import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.domain.Image;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,6 +21,8 @@ import java.util.Map;
 @Repository
 public class ProductDaoImpl implements ProductDao {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private DataSource dataSource;
     private NamedParameterJdbcTemplate jdbc;
     private RowMapper<SimpleProductDto> simpleProductRowMapper = BeanPropertyRowMapper.newInstance(SimpleProductDto.class);
@@ -35,6 +38,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<SimpleProductDto> selectProducts(int offset) {
+        logger.info("mainProductLimit : {}", mainProductLimit);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("offset", offset);
         params.put("limit", mainProductLimit);
@@ -43,6 +47,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<SimpleProductDto> selectProductsByCategoryId(Long categoryId, int offset) {
+        logger.info("mainProductLimit : {}", mainProductLimit);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("offset", offset);
         params.put("limit", mainProductLimit);
@@ -64,13 +69,13 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     public DetailProductDto selectProductById(Long productId) {
-        Map<String, Object> params = Collections.singletonMap("productId",productId);
-        return jdbc.queryForObject(ProductSqls.SELECT_PRODUCT_BY_ID,params,detailProductDtoRowMapper);
+        Map<String, Object> params = Collections.singletonMap("productId", productId);
+        return jdbc.queryForObject(ProductSqls.SELECT_PRODUCT_BY_ID, params, detailProductDtoRowMapper);
     }
 
     @Override
     public List<Image> selectProductImageListById(Long productId) {
-        Map<String, Object> params = Collections.singletonMap("productId",productId);
+        Map<String, Object> params = Collections.singletonMap("productId", productId);
         return jdbc.query(ProductSqls.SELECT_PRODUCT_IMGAE_LIST, params, imageRowMapper);
     }
 }

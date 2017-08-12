@@ -57,7 +57,7 @@
                                             <c:set var="productDesc" value=""/>
                                         </c:otherwise>
                                     </c:choose>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/api/files/${file.fileId}"> <span class="img_bg"></span>
+                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/${file.fileId}"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
                                                 <h2 class="visual_txt_tit" data-id="${product.id}"> <span>${product.name}</span> </h2>
@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="list_item">
+                            <%--<li class="list_item">
                                 <div>
                                     <div class="review_area no_img">
                                         <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
@@ -162,7 +162,7 @@
                                         <div class="review_info"> <span class="grade">4.0</span> <span class="name">xero****</span> <span class="date">2017.3.4. 방문</span> </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                     <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>

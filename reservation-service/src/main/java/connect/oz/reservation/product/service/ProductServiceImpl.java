@@ -1,6 +1,5 @@
 package connect.oz.reservation.product.service;
 
-import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
@@ -26,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
         List<SimpleProductDto> productDtoList = null;
         Map<String, Object> result = new HashMap<String, Object>();
         int count = 0;
-        try{
+        try {
             if (categoryId == 0) {
                 productDtoList = productDao.selectProducts(offset);
                 count = productDao.selectProductCount();
@@ -34,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
                 productDtoList = productDao.selectProductsByCategoryId(categoryId, offset);
                 count = productDao.selectProductCountByCategoryId(categoryId);
             }
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
         }
 
@@ -47,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
     public DetailProductDto selectProductById(Long productId) {
         DetailProductDto detailProductDto = productDao.selectProductById(productId);
         List<Image> files = productDao.selectProductImageListById(productId);
-        System.out.println("===========>ser"+files.get(1).toString());
+
         detailProductDto.setFiles(files);
         return detailProductDto;
     }

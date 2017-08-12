@@ -49,7 +49,12 @@ public class DbConfig {
     }
 
     @Bean
-    public int getMainProductLimit() {
+    public int mainProductLimit() {
         return mainProductLimit;
+    }
+
+    @Bean
+    public int commentLimit() {
+        return commentLimit;
     }
 }

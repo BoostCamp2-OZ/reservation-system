@@ -3,6 +3,7 @@ package connect.oz.reservation.file.controller;
 import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.file.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 
-@RestController
-@RequestMapping("/api/files")
+@Controller
+@RequestMapping("/files")
 public class FileController {
 
     @Autowired
-    FileService fileService;
+    private FileService fileService;
 
-    private String baseDir="c:"+File.separator+"Users"+File.separator+"sollip"+File.separator+"img"+File.separator;
+    @Autowired
+    private String baseDiretory;
 
     @GetMapping("/{fileId}")
     public void selectFileById(@PathVariable Long fileId, HttpServletResponse response){

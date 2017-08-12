@@ -25,11 +25,11 @@ public class ProductRestController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView selectProductById(@PathVariable("id") Long productId, Model model){
+    public ModelAndView selectProductById(@PathVariable("id") Long productId, Model model) {
         DetailProductDto detailProductDto = productService.selectProductById(productId);
-        System.out.println("============>"+detailProductDto.getFiles().get(1).toString());
+
         ModelAndView mav = new ModelAndView("detail");
-        mav.addObject("product",detailProductDto);
+        mav.addObject("product", detailProductDto);
 
         return mav;
     }
