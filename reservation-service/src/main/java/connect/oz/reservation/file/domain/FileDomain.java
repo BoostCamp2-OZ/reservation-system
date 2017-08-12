@@ -2,12 +2,12 @@ package connect.oz.reservation.file.domain;
 
 import java.sql.Timestamp;
 
-public class File {
+public class FileDomain {
     private long id;
     private long userId;
     private String fileName;
     private String saveFileName;
-    private String fileLength;
+    private int fileLength;
     private String contentType;
     private int deleteFlag;
     private Timestamp createDate;
@@ -45,11 +45,11 @@ public class File {
         this.saveFileName = saveFileName;
     }
 
-    public String getFileLength() {
+    public int getFileLength() {
         return fileLength;
     }
 
-    public void setFileLength(String fileLength) {
+    public void setFileLength(int fileLength) {
         this.fileLength = fileLength;
     }
 
@@ -83,5 +83,20 @@ public class File {
 
     public void setModifyDate(Timestamp modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    @Override
+    public String toString() {
+        return "FileDomain{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", fileName='" + fileName + '\'' +
+                ", saveFileName='" + saveFileName + '\'' +
+                ", fileLength=" + fileLength +
+                ", contentType='" + contentType + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", createDate=" + createDate +
+                ", modifyDate=" + modifyDate +
+                '}';
     }
 }

@@ -37,4 +37,14 @@ public class Image {
     public void setType(long type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", fileId=" + fileId +
+                ", type=" + type +
+                '}';
+    }
 }

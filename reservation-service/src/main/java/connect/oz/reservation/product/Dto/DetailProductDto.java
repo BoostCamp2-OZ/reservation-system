@@ -1,8 +1,8 @@
 package connect.oz.reservation.product.Dto;
 
-import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.file.domain.FileDomain;
+import connect.oz.reservation.product.domain.Image;
 import connect.oz.reservation.product.domain.Price;
-import org.mockito.internal.verification.Times;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -25,7 +25,7 @@ public class DetailProductDto {
     private String homepage;
     private String email;
 
-    private List<File> files;
+    private List<Image> files;
     private List<Price> prices;
 
     public Long getId() {
@@ -148,11 +148,11 @@ public class DetailProductDto {
         this.email = email;
     }
 
-    public List<File> getFiles() {
+    public List<Image> getFiles() {
         return files;
     }
 
-    public void setFiles(List<File> files) {
+    public void setFiles(List<Image> files) {
         this.files = files;
     }
 

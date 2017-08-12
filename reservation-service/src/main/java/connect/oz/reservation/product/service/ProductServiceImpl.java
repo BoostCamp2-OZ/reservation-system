@@ -1,9 +1,10 @@
 package connect.oz.reservation.product.service;
 
-import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
+import connect.oz.reservation.product.domain.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public DetailProductDto selectProductById(Long productId) {
         DetailProductDto detailProductDto = productDao.selectProductById(productId);
-        List<File> files = productDao.selectProductImageListById(productId);
+        List<Image> files = productDao.selectProductImageListById(productId);
+        System.out.println("===========>ser"+files.get(1).toString());
         detailProductDto.setFiles(files);
         return detailProductDto;
     }

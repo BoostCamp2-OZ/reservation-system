@@ -56,5 +56,5 @@ public class ProductSqls {
                     + " WHERE F.delete_flag = 0"
                     + " AND F.file_length > 0"
                     + " AND P.id = :productId"
-                    + " ORDER BY PI.type DESC";
+                    + " ORDER BY PI.type ASC";
 }

@@ -1,6 +1,6 @@
 package connect.oz.reservation.product.dao;
 
-import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.domain.Image;
@@ -19,6 +19,6 @@ public interface ProductDao {
 
     public DetailProductDto selectProductById(Long productId);
 
-    public List<File> selectProductImageListById(Long productId);
+    public List<Image> selectProductImageListById(Long productId);
 
 }

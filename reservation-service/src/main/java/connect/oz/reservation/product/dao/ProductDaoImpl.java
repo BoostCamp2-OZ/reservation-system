@@ -1,8 +1,9 @@
 package connect.oz.reservation.product.dao;
 
-import connect.oz.reservation.file.domain.File;
+import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.Dto.DetailProductDto;
 import connect.oz.reservation.product.Dto.SimpleProductDto;
+import connect.oz.reservation.product.domain.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -23,7 +24,7 @@ public class ProductDaoImpl implements ProductDao {
     private NamedParameterJdbcTemplate jdbc;
     private RowMapper<SimpleProductDto> simpleProductRowMapper = BeanPropertyRowMapper.newInstance(SimpleProductDto.class);
     private RowMapper<DetailProductDto> detailProductDtoRowMapper = BeanPropertyRowMapper.newInstance(DetailProductDto.class);
-    private RowMapper<File> fileRowMapper = BeanPropertyRowMapper.newInstance(File.class);
+    private RowMapper<Image> imageRowMapper = BeanPropertyRowMapper.newInstance(Image.class);
 
     @Autowired
     private int mainProductLimit;
@@ -68,9 +69,8 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<File> selectProductImageListById(Long productId) {
+    public List<Image> selectProductImageListById(Long productId) {
         Map<String, Object> params = Collections.singletonMap("productId",productId);
-
-        return jdbc.query(ProductSqls.SELECT_PRODUCT_IMGAE_LIST, params, fileRowMapper);
+        return jdbc.query(ProductSqls.SELECT_PRODUCT_IMGAE_LIST, params, imageRowMapper);
     }
 }

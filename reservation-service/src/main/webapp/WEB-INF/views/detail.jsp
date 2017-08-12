@@ -46,7 +46,7 @@
                     <div>
                         <div class="container_visual" style="width: 414px;">
                             <ul class="visual_img">
-                                <c:forEach var = "image" items = "${product.files}" varStatus="status">
+                                <c:forEach var = "file" items = "${product.files}" varStatus="status">
                                     <c:choose>
                                         <c:when test="${status.first}">
                                             <c:set var="productName" value="${product.name}"/>
@@ -57,7 +57,7 @@
                                             <c:set var="productDesc" value=""/>
                                         </c:otherwise>
                                     </c:choose>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
+                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/api/files/${file.fileId}"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
                                                 <h2 class="visual_txt_tit" data-id="${product.id}"> <span>${product.name}</span> </h2>
