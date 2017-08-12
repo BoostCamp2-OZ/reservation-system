@@ -1,9 +1,9 @@
 package connect.oz.reservation.dao;
 
 import connect.oz.reservation.config.RootApplicationContextConfig;
-import connect.oz.reservation.product.Dto.DetailProductDto;
-import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
+import connect.oz.reservation.product.dto.DetailProductDto;
+import connect.oz.reservation.product.dto.SimpleProductDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

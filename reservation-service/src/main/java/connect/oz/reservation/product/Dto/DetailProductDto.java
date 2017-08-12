@@ -1,6 +1,5 @@
-package connect.oz.reservation.product.Dto;
+package connect.oz.reservation.product.dto;
 
-import connect.oz.reservation.file.domain.FileDomain;
 import connect.oz.reservation.product.domain.Image;
 import connect.oz.reservation.product.domain.Price;
 

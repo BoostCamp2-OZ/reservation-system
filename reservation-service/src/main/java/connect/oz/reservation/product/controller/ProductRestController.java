@@ -1,6 +1,6 @@
 package connect.oz.reservation.product.controller;
 
-import connect.oz.reservation.product.Dto.DetailProductDto;
+import connect.oz.reservation.product.dto.DetailProductDto;
 import connect.oz.reservation.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

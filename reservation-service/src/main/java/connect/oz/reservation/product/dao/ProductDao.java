@@ -1,8 +1,7 @@
 package connect.oz.reservation.product.dao;
 
-import connect.oz.reservation.file.domain.FileDomain;
-import connect.oz.reservation.product.Dto.DetailProductDto;
-import connect.oz.reservation.product.Dto.SimpleProductDto;
+import connect.oz.reservation.product.dto.DetailProductDto;
+import connect.oz.reservation.product.dto.SimpleProductDto;
 import connect.oz.reservation.product.domain.Image;
 import org.springframework.dao.EmptyResultDataAccessException;
 

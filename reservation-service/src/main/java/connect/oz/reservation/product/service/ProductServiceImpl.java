@@ -1,9 +1,9 @@
 package connect.oz.reservation.product.service;
 
-import connect.oz.reservation.product.Dto.DetailProductDto;
-import connect.oz.reservation.product.Dto.SimpleProductDto;
 import connect.oz.reservation.product.dao.ProductDao;
 import connect.oz.reservation.product.domain.Image;
+import connect.oz.reservation.product.dto.DetailProductDto;
+import connect.oz.reservation.product.dto.SimpleProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;

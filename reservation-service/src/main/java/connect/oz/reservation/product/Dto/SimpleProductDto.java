@@ -1,4 +1,4 @@
-package connect.oz.reservation.product.Dto;
+package connect.oz.reservation.product.dto;
 
 public class SimpleProductDto {
     private Long id;

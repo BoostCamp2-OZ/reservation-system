@@ -1,6 +1,6 @@
 package connect.oz.reservation.product.service;
 
-import connect.oz.reservation.product.Dto.DetailProductDto;
+import connect.oz.reservation.product.dto.DetailProductDto;
 
 import java.util.Map;
 
