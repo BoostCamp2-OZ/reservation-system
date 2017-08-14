@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div id="container">
+<div id="container" >
     <div class="header fade">
         <header class="header_tit">
             <h1 class="logo">
@@ -42,7 +42,7 @@
                         <span class="num off">/ <span>${fn:length(product.files)}</span></span>
                     </div>
                 </div>
-                <div class="group_visual">
+                <div class="group_visual" data-product-id="${product.id}">
                     <div>
                         <div class="container_visual" style="width: 414px;">
                             <ul class="visual_img">
@@ -60,7 +60,7 @@
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/${file.fileId}"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit" data-id="${product.id}"> <span>${product.name}</span> </h2>
+                                                <h2 class="visual_txt_tit" > <span>${product.name}</span> </h2>
                                                 <p class="visual_txt_dsc">${product.description}</p>
                                             </div>
                                         </div>
@@ -116,7 +116,21 @@
                     </div>
                 </div>
             </div>
-            <div class="section_btn"> <button type="button" class="bk_btn"> <i class="fn fn-nbooking-calender2"></i> <span>예매하기</span> </button> </div>
+            <div class="section_btn"> <button type="button" class="bk_btn">
+                <i class="fn fn-nbooking-calender2"></i>
+                <c:choose>
+                    <c:when test="${product.salesFlag eq 1}">
+                        <span data-reservable="false">매진</span>
+                    </c:when>
+                    <c:when test="${salesEnd}">
+                        <span data-reservable="false">판매 종료</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span data-reservable="true">예매하기</span>
+                    </c:otherwise>
+                </c:choose>
+                </button>
+            </div>
             <div class="section_review_list">
                 <div class="review_box">
                     <h3 class="title_h3">예매자 한줄평</h3>
