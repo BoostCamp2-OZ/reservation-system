@@ -1,52 +1,53 @@
 var CommentList = (function () {
 
+    var $commentSummary = $('div.grade_area');
+
+    var source = $('#commentTemplate').html();
+    var commentTemplate = Handlebars.compile(source);
+
     function init() {
+        getComments();
+    }
 
-        var source = $('#commentTemplate').html();
-        var commentTemplate = Handlebars.compile(source);
-
+    function getComments() {
         var productId = $('.group_visual').data('product-id');
         var offset = 0;
 
-        var $commentSummary = $('div.grade_area');
-
-
-        options = {
+        ajaxModule.ajax({
             url: '/api/comments/products/' + productId + '/offset/' + offset,
             method: 'GET'
-        }
+        }, renderingComments);
 
-        function rederingComments(data) {
-            for (var i = 0, l = data.comments.length; i < l; i++) {
-                data.comments[i].createDate = moment(data.comments[i].createDate).format('YYYY.MM.DD. 방문');
-                data.comments[i].score = data.comments[i].score.toFixed(1);
-            }
+    }
 
-            $('ul.list_short_review').append(commentTemplate(data));
-            rederingCommentsSummary(data.commentsSummary);
+    function renderingComments(data) {
 
-        }
+        data.comments.forEach(function(comment) {
+            comment.createDate = formattingDate(comment.createDate);
+            comment.score = comment.score.toFixed(1);
+        });
 
-        function rederingCommentsSummary(commentsSummary) {
-            var average = commentsSummary.average;
-            var rating = average / 5.0 * 100;
-            $commentSummary.find('.text_value span').text(average);
-            $commentSummary.find('em.green').text(commentsSummary.totalCount);
-            $commentSummary.find('.graph_value').css('width', rating + '%');
-        }
+        $('ul.list_short_review').append(commentTemplate(data));
 
-        ajaxModule.ajax(options, rederingComments);
+        renderingCommentsSummary(data.commentsSummary);
 
+    }
 
+    function formattingDate(createDate) {
+        return moment(createDate).format('YYYY.MM.DD. 방문');
+    }
+
+    function renderingCommentsSummary(commentsSummary) {
+        var average = commentsSummary.average;
+        var rating = average / 5.0 * 100;
+        $commentSummary.find('.text_value span').text(average);
+        $commentSummary.find('em.green').text(commentsSummary.totalCount);
+        $commentSummary.find('.graph_value').css('width', rating + '%');
     }
 
 
     return {
         init: init
     }
+
 })();
-
-
-$(function () {
-    CommentList.init();
-})

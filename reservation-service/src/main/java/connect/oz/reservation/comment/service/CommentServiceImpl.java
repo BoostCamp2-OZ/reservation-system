@@ -1,6 +1,7 @@
 package connect.oz.reservation.comment.service;
 
 import connect.oz.reservation.comment.dao.CommentDao;
+import connect.oz.reservation.comment.domain.CommentImage;
 import connect.oz.reservation.comment.dto.CommentDto;
 import connect.oz.reservation.comment.dto.CommentSummaryDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class CommentServiceImpl implements CommentService {
     private CommentDao commentDao;
 
     @Override
+    public List<CommentImage> selectCommentImages(Long commentId) {
+        return commentDao.selectCommentImages(commentId);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Map<String, Object> selectComments(Long productId, int offset) {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -29,4 +35,6 @@ public class CommentServiceImpl implements CommentService {
         result.put("commentsSummary", commentsSummary);
         return result;
     }
+
+
 }

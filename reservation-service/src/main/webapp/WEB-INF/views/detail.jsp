@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
+    <link href="/resources/css/photoviewer.css" rel="stylesheet">
     <script src="/resources/node_modules/handlebars/dist/handlebars.js"></script>
 
     <script id="commentTemplate" type="template/x-handlebars">
@@ -19,9 +20,13 @@
         <li class="list_item">
             <div>
                 <div class="review_area">
-                    <div class="thumb_area">
-                        <a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a> <span class="img_count">{{imageCount}}</span>                                                </div>
-                    <%--<h4 class="resoc_name">{{#with ../commentsSummary.productName as |name|}}</h4>--%>
+                    <div class="thumb_area" data-comment-id="{{id}}">
+                        {{#if fileId}}
+                        <a href="#" class="thumb" title="이미지 크게 보기">
+                            <img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a>
+                        <span class="img_count">{{imageCount}}</span>
+                        {{/if}}
+                    </div>
                     <h4 class="resoc_name">{{lookup ../this.commentsSummary "productName"}}</h4>
                     <p class="review">{{comment}}</p>
                 </div>
@@ -29,6 +34,20 @@
                     <div class="review_info"> <span class="grade">{{score}}</span> <span class="name">{{userName}}</span> <span class="date">{{createDate}}</span> </div>
                 </div>
             </div>
+        </li>
+        {{/each}}
+    </script>
+
+    <script id="popupImageTempl" type="text/x-handlebars-template">
+        {{#each this}}
+        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/{{fileId}}">
+            <%--<span class="img_bg"></span>--%>
+            <%--<div class="visual_txt">--%>
+            <%--<div class="visual_txt_inn">--%>
+            <%--<h2 class="visual_txt_tit" > <span>${product.name}</span> </h2>--%>
+            <%--<p class="visual_txt_dsc">${product.description}</p>--%>
+            <%--</div>--%>
+            <%--</div>--%>
         </li>
         {{/each}}
     </script>
@@ -264,7 +283,34 @@
         <span class="copyright">© NAVER Corp.</span>
     </div>
 </footer>
-<div id="photoviwer"></div>
+<div id="photoviewer">
+    <div class="popup">
+        <label for="photoviewer"></label>
+        <div class="popup_title">
+            <div class="prev">
+                <i class="spr_book2 arr_img_lt arr_img"></i>
+            </div>
+
+            <div class="preview_center">
+                <h3>PHOTO VIEWER</h3>
+                <div class="figure_pagination">
+                    <span class="num">1</span>
+                    <span class="num off">/ <span>${fn:length(product.files)}</span></span>
+                </div>
+                <%--<p><span class="index">1 </span><span> / <span class="size"> 0</span></span></p>--%>
+            </div>
+
+            <div class="nxt">
+                <i class="spr_book2 arr_img_rt arr_img"></i>
+            </div>
+        </div>
+        <div class="popup_content">
+            <ul class="visual_img popup_image">
+                <%-- popup image template --%>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 <script src="/resources/node_modules/jquery/dist/jquery.js"></script>
 <script src="/resources/node_modules/moment/moment.js"></script>
