@@ -12,6 +12,7 @@
     "@egjs/component": "^2.0.0-rc",
     "handlebars": "^4.0.10",
     "jquery": "^3.2.1",
+    "moment": "^2.18.1",
     "require-handlebars-plugin": "^1.0.0",
     "requirejs": "^2.3.4",
     "requirejs-plugins": "^1.0.2"

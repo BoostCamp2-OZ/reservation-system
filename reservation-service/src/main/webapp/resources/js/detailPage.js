@@ -12,7 +12,7 @@ $(function () {
     }
 
     function clickReservableProduct(e){
-        var productId =  $('.group_visual').data('product-id');
+        var productId = $('.group_visual').data('product-id');
         console.log(productId);
 
         if(checkReservableProduct(e.currentTarget)){
@@ -23,6 +23,8 @@ $(function () {
         var isReservable = $(target).find('span').data('reservable');
         return isReservable;
     }
+
+
     init();
 
 });
