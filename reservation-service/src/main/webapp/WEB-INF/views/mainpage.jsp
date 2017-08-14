@@ -22,7 +22,7 @@
     <script id="productTemplate" , type="text/x-handlears-template">
 
         <li class="item">
-            <a href="/api/products/{{id}}" class="item_book">
+            <a href="/products/{{id}}" class="item_book">
                 <div class="item_preview"><img alt="뮤지컬 인 더 하이츠(IN THE HEIGHTS)" class="img_thumb"
                                                src="https://ssl.phinf.net/naverbooking/20170111_225/1484116579024rNkXW_JPEG/2016_%B9%C2%C1%F6%C4%C3_%C0%CE_%B4%F5_%C7%CF%C0%CC%C3%F7_%C6%F7%BD%BA%C5%CD%2820MB%29.jpg?type=l591_945">
                     <span class="img_border"></span></div>

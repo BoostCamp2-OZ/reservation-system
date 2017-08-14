@@ -2,7 +2,7 @@ var FlickingComponent = extend(eg.Component, {
 
         init: function ($root, options) {
             this.$root = $root;
-            this.$slider = $(this.$root.find('ul.visual_img')[0]);
+            this.$slider = this.$root.find('ul.visual_img').eq(0);
 
             var $item = this.$slider.find('li');
             this.itemWidth = $item.width();
@@ -61,15 +61,13 @@ var FlickingComponent = extend(eg.Component, {
 
 
         _move: function (direction) {
-            var movePosition = this.status.movePosition;
-            this.mcInst.move(direction, movePosition);
+            this.mcInst.move(direction, this.status.movePosition);
         },
 
 
         _touchStart: function (e) {
-            var $slider = this.$slider;
             this.status.startX = e.changedTouches[0].pageX;
-            this.status.saveX = parseInt($slider.css('left'));
+            this.status.saveX = parseInt(this.$slider.css('left'));
         },
 
 
@@ -116,16 +114,12 @@ var FlickingComponent = extend(eg.Component, {
 
 
         _resetPosition: function () {
-            var $slider = this.$slider;
-            var status = this.status;
-            $slider.animate({'left': status.saveX}, 100); // 초기화
+            this.$slider.animate({'left': this.status.saveX}, 100); // 초기화
         },
 
 
         _moveSlider: function () {
-            var $slider = this.$slider;
-            var status = this.status;
-            $slider.css({'left': status.saveX + status.movePosition});
+            this.$slider.css({'left': this.status.saveX + this.status.movePosition});
         },
 
 
@@ -154,5 +148,4 @@ var FlickingComponent = extend(eg.Component, {
             return isReached;
         }
 
-    })
-;
+    });

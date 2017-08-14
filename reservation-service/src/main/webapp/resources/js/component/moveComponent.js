@@ -23,8 +23,6 @@ var MoveComponent = extend(eg.Component, {
         var $slider = $(this.$root);
         var $items = $slider.find('li');
 
-        // 아이템의개수가 3이상이면, 마지막 슬라이드를 첫번째 앞에 붙이고 마지막 슬라이드를 삭제
-        // 아이템 개수가 3개 미만일 경우에는 앞뒤에 붙여준다.
         if($items.length < 3) {
             var cloneLast = $items.last().clone(true);
             var cloneFirst = $items.first().clone(true);
@@ -32,9 +30,7 @@ var MoveComponent = extend(eg.Component, {
             $items.first().before(cloneLast);
             $items.last().after(cloneFirst);
         } else {
-            var cloneLast = $items.last().clone(true);
-            $items.first().before(cloneLast);
-            $items.last().remove();
+            $items.first().before($items.last());
         }
 
         $slider.css({'left' : -$items.width()}); // css 초기화
@@ -62,7 +58,7 @@ var MoveComponent = extend(eg.Component, {
                 function complete() {
                     if (options.circulation) {
                         $item.first().before($item.last());
-                        $slider.css({'left': -itemWidth}); // 초기화
+                        $slider.css({'left': -itemWidth});
                     } else {
                         $slider.css({'left': -itemWidth * (options.index - 1)});
                     }

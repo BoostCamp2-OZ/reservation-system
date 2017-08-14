@@ -18,8 +18,8 @@ var ajaxModule = (function ($) {
 
             }).then(function (json) {
 
-                cachedData[options.url] = json; // data caching
-                callback(json);         // callback function
+                cachedData[options.url] = json;
+                callback(json);
             });
         }
     }
