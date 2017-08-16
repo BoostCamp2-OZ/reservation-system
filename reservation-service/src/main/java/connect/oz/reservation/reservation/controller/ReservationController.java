@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/reservations")
 public class ReservationController {
     @GetMapping("/products/{id}")
-    public String getReserve(@PathVariable("id") Long productId){
+    public String getReserve(@PathVariable("id") Long productId) {
         return "reserve";
     }
 }
