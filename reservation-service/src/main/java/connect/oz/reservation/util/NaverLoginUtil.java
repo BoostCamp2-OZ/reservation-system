@@ -65,4 +65,8 @@ public class NaverLoginUtil {
         return requestUrl + "client_id=" + clientId + "&response_type=code" + "&redirect_uri=" + loginCallbackUrl
                 + "&state=" + state + "&auth_type=reauthenticate";
     }
+
+    public String getProfileUrl(){
+        return requestUserInfoUrl;
+    }
 }
