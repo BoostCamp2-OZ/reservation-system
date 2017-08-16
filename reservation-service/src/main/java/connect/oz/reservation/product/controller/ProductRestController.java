@@ -13,8 +13,12 @@ import java.util.Map;
 @RequestMapping("/api/products")
 public class ProductRestController {
 
-    @Autowired
     private ProductService productService;
+
+    @Autowired
+    public ProductRestController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/categories/{categoryId}/offset/{offset}")
     public Map<String, Object> selectProducts(@PathVariable("categoryId") Long categoryId, @PathVariable("offset") int offset) {

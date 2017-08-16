@@ -16,8 +16,12 @@ import java.util.Map;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    public ProductServiceImpl(ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     @Transactional(readOnly = true)
     @Override

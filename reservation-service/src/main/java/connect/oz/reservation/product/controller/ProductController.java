@@ -15,8 +15,12 @@ import java.util.Calendar;
 @Controller
 public class ProductController {
 
-    @Autowired
     private ProductService productService;
+
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/")
     public String getMainpage() {

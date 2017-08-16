@@ -33,7 +33,7 @@ public class LoginController {
     private LoginService loginService;
 
     @Autowired
-    public LoginController(  NaverLoginUtil naverLoginUtil, RestTemplate restTemplate,LoginService loginService) {
+    public LoginController(NaverLoginUtil naverLoginUtil, RestTemplate restTemplate, LoginService loginService) {
         this.loginService = loginService;
         this.naverLoginUtil = naverLoginUtil;
         this.restTemplate = restTemplate;
@@ -52,7 +52,7 @@ public class LoginController {
     public String callback(
             @RequestParam String state,
             @RequestParam String code,
-            HttpServletRequest request){
+            HttpServletRequest request) {
 
         // 세션에 저장된 토큰을 받아옵니다.
         String storedState = (String) request.getSession().getAttribute("state");
@@ -64,40 +64,48 @@ public class LoginController {
         }
 
         ResponseEntity<Map<String, String>> entity = restTemplate.exchange(naverLoginUtil.getAccessTokenUrl(state, code),
-                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, String>>() {});
+                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, String>>() {
+                });
 
         logger.info("Entity : {} ", entity);
 
-        if(entity.getStatusCodeValue() == 200) {
+        if (entity.getStatusCodeValue() == 200) {
             Map<String, String> responseBody = entity.getBody();
             String accessToken = responseBody.get("access_token");
 
-            if(accessToken != null && !accessToken.isEmpty()) {
+            if (accessToken != null && !accessToken.isEmpty()) {
                 Users naverLoginUserDto = getUserProfile(accessToken);
-                System.out.println("==============>"+naverLoginUserDto.toString());
-                if(naverLoginUserDto != null){
+                System.out.println("==============>" + naverLoginUserDto.toString());
+                if (naverLoginUserDto != null) {
 
-                    loginService.login(naverLoginUserDto);
-                    //디비에 저장
-                    //세션에 저장
-                    //redirect:/
+                    boolean success = loginService.login(naverLoginUserDto);
+
+                    if (success) {
+                        //디비에 저장
+                        Users user = loginService.selectUsers(naverLoginUserDto.getSnsId());
+                        //세션에 저장
+                        request.getSession().setAttribute("loginedUser", user);
+                    } else return "redirect:/";
+
                 }
             }
         }
 
-        return "redirect:/";
+        return "redirect:/" + redirectUrl;
     }
-    public NaverLoginUserDto getUserProfile(String accessToken){
 
-        HttpHeaders header=new HttpHeaders();
-        header.set("Authorization"," Bearer "+accessToken);
-        HttpEntity<String> httpEntity=new HttpEntity<>(header);
+    public NaverLoginUserDto getUserProfile(String accessToken) {
+
+        HttpHeaders header = new HttpHeaders();
+        header.set("Authorization", " Bearer " + accessToken);
+        HttpEntity<String> httpEntity = new HttpEntity<>(header);
 
         ResponseEntity<NaverLoginResponseDto> entity = restTemplate.exchange(naverLoginUtil.getProfileUrl(), HttpMethod.GET,
-                httpEntity, new ParameterizedTypeReference<NaverLoginResponseDto>() {});
+                httpEntity, new ParameterizedTypeReference<NaverLoginResponseDto>() {
+                });
         logger.info("Entity : {} ", entity);
 
-        if(200 == entity.getStatusCodeValue()){
+        if (200 == entity.getStatusCodeValue()) {
             return entity.getBody().getUser();
         }
         return null;

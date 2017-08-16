@@ -18,11 +18,15 @@ import java.io.FileInputStream;
 @RequestMapping("/files")
 public class FileController {
 
-    @Autowired
     private FileService fileService;
 
-    @Autowired
     private String baseDiretory;
+
+    @Autowired
+    public FileController(FileService fileService, String baseDiretory) {
+        this.fileService = fileService;
+        this.baseDiretory = baseDiretory;
+    }
 
     @GetMapping("/{fileId}")
     public void selectFileById(@PathVariable Long fileId, HttpServletResponse response){

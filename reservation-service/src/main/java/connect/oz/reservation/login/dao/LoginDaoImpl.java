@@ -4,7 +4,9 @@ import connect.oz.reservation.login.domain.Users;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class LoginDaoImpl implements  LoginDao{
+public class LoginDaoImpl implements LoginDao {
 
     private NamedParameterJdbcTemplate jdbc;
     private RowMapper<Users> rowMapper = BeanPropertyRowMapper.newInstance(Users.class);
@@ -21,17 +23,30 @@ public class LoginDaoImpl implements  LoginDao{
 
     public LoginDaoImpl(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-        this.insertAction=new SimpleJdbcInsert(dataSource)
+        this.insertAction = new SimpleJdbcInsert(dataSource)
                 .withTableName("users").usingGeneratedKeyColumns("id");
     }
 
+    @Override
     public Users selectBySnsId(long snsId) {
-        Map<String,Long> params = new HashMap<>();
-        params.put("snsId",snsId);
-        try{
+        Map<String, Long> params = new HashMap<>();
+        params.put("snsId", snsId);
+        try {
             return jdbc.queryForObject(LoginSqls.SELECT_USER_BY_SNS_ID, params, rowMapper);
-        }catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Override
+    public int updateUser(Users user) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+        return jdbc.update(LoginSqls.UPDATE_USER, params);
+    }
+
+    @Override
+    public Long insertUser(Users user) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+        return insertAction.executeAndReturnKey(params).longValue();
     }
 }

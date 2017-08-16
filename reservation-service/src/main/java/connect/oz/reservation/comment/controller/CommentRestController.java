@@ -16,9 +16,12 @@ import java.util.Map;
 @RequestMapping("/api/comments")
 public class CommentRestController {
 
-    @Autowired
     private CommentService commentService;
 
+    @Autowired
+    public CommentRestController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @GetMapping("/{commentId}/images")
     public List<CommentImage> selectCommentImages(@PathVariable Long commentId) {

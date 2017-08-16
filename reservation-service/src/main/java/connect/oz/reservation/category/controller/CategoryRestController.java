@@ -13,8 +13,13 @@ import java.util.List;
 @RequestMapping("/api/categories")
 public class CategoryRestController {
 
-    @Autowired
+
     private CategoryService categoryService;
+
+    @Autowired
+    public CategoryRestController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping
     public List<Category> selectCategories() {

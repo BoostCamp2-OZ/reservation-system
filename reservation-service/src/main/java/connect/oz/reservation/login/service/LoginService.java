@@ -3,5 +3,7 @@ package connect.oz.reservation.login.service;
 import connect.oz.reservation.login.domain.Users;
 
 public interface LoginService {
-    public Users login(Users user);
+    boolean login(Users user);
+
+    Users selectUsers(Long id);
 }

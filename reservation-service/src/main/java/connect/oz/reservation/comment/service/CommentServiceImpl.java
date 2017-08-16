@@ -15,8 +15,12 @@ import java.util.Map;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-    @Autowired
     private CommentDao commentDao;
+
+    @Autowired
+    public CommentServiceImpl(CommentDao commentDao) {
+        this.commentDao = commentDao;
+    }
 
     @Override
     public List<CommentImage> selectCommentImages(Long commentId) {

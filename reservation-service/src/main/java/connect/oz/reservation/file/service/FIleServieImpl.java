@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FIleServieImpl implements FileService {
+
+    private FileDao fileDao;
+
     @Autowired
-    FileDao fileDao;
+    public FIleServieImpl(FileDao fileDao) {
+        this.fileDao = fileDao;
+    }
 
     @Override
     public FileDomain selectFileById(Long fileId) {
