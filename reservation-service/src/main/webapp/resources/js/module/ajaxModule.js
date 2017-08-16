@@ -6,18 +6,18 @@ var ajaxModule = (function ($) {
         var cachingData = cachedData[options.url];
 
         if (cachingData) {
-            callback(cachingData);
+            //튜터링 수정...
+            setTimeout(function(){
+                callback(cachingData);
+            },0);
         } else {
-
             $.ajax({
-
                 url: options.url,
                 method: options.method || 'GET',
                 data: options.data || null,
                 contentType: 'application/json'
 
             }).then(function (json) {
-
                 cachedData[options.url] = json;
                 callback(json);
             });
