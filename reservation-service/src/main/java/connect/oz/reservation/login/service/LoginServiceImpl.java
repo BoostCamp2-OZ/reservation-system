@@ -19,8 +19,8 @@ public class LoginServiceImpl implements  LoginService{
         this.loginDao = loginDao;
     }
 
-    public Users login(NaverLoginUserDto naverLoginUserDto){
-        if(loginDao.selectBySnsId(naverLoginUserDto.getId()) != null){
+    public Users login(Users user){
+        if(loginDao.selectBySnsId(user.getSnsId()) != null){
             //update
             logger.info("이미 존재하는 아이디 입니다.~~~~~~");
         }else{

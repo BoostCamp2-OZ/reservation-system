@@ -1,79 +1,56 @@
 package connect.oz.reservation.login.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import connect.oz.reservation.login.domain.Users;
 
 import java.io.Serializable;
 
-public class NaverLoginUserDto implements Serializable {
+public class NaverLoginUserDto extends Users implements Serializable {
 
-    private long id;
-    @JsonProperty("profile_image")
-    private String profileImage;
-    private String age;
-    private String email;
-    private String gender;
-    private String birthday;
-    private String nickname;
-
-    public long getId() {
-        return id;
+    @Override
+    @JsonProperty("name")
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    @Override
+    @JsonProperty("email")
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
+    @Override
+    @JsonProperty("nickname")
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
     @Override
+    @JsonProperty("id")
+    public void setSnsId(long snsId) {
+        this.snsId = snsId;
+    }
+
+    @Override
+    @JsonProperty("sns_profile")
+    public String getSnsProfile() {
+        return snsProfile;
+    }
+
+    @Override
     public String toString() {
-        return "NaverUserDto [id=" + id + ", profileImage=" + profileImage + ", age=" + age + ", email=" + email
-                + ", gender=" + gender + ", birthday=" + birthday + ", nickname=" + nickname + "]";
+        return "NaverLoginUserDto{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", snsId='" + snsId + '\'' +
+                ", snsType='" + snsType + '\'' +
+                ", snsProfile='" + snsProfile + '\'' +
+                ", adminFlag=" + adminFlag +
+                ", createDate=" + createDate +
+                ", modifyDate=" + modifyDate +
+                '}';
     }
 }

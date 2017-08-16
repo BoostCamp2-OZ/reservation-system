@@ -1,21 +1,19 @@
 package connect.oz.reservation.login.domain;
 
-import org.mockito.internal.verification.Times;
-
 import java.sql.Timestamp;
 
 public class Users {
-    private Long id;
-    private String username;
-    private String email;
-    private String tel;
-    private String nickname;
-    private String snsId;
-    private String snsType;
-    private String snsProfile;
-    private int adminFlag;
-    private Timestamp createDate;
-    private Timestamp modifyDate;
+    protected Long id;
+    protected String username;
+    protected String email;
+    protected String tel;
+    protected String nickname;
+    protected long snsId;
+    protected String snsType;
+    protected String snsProfile;
+    protected int adminFlag;
+    protected Timestamp createDate;
+    protected Timestamp modifyDate;
 
     public Users() {
     }
@@ -60,11 +58,11 @@ public class Users {
         this.nickname = nickname;
     }
 
-    public String getSnsId() {
+    public long getSnsId() {
         return snsId;
     }
 
-    public void setSnsId(String snsId) {
+    public void setSnsId(long snsId) {
         this.snsId = snsId;
     }
 
@@ -84,6 +82,14 @@ public class Users {
         this.snsProfile = snsProfile;
     }
 
+    public int getAdminFlag() {
+        return adminFlag;
+    }
+
+    public void setAdminFlag(int adminFlag) {
+        this.adminFlag = adminFlag;
+    }
+
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -99,5 +105,4 @@ public class Users {
     public void setModifyDate(Timestamp modifyDate) {
         this.modifyDate = modifyDate;
     }
-
 }

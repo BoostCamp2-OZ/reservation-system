@@ -1,5 +1,6 @@
 package connect.oz.reservation.login.controller;
 
+import connect.oz.reservation.login.domain.Users;
 import connect.oz.reservation.login.dto.NaverLoginResponseDto;
 import connect.oz.reservation.login.dto.NaverLoginUserDto;
 import connect.oz.reservation.login.service.LoginService;
@@ -20,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Controller
@@ -73,7 +73,8 @@ public class LoginController {
             String accessToken = responseBody.get("access_token");
 
             if(accessToken != null && !accessToken.isEmpty()) {
-                NaverLoginUserDto naverLoginUserDto = getUserProfile(accessToken);
+                Users naverLoginUserDto = getUserProfile(accessToken);
+                System.out.println("==============>"+naverLoginUserDto.toString());
                 if(naverLoginUserDto != null){
 
                     loginService.login(naverLoginUserDto);

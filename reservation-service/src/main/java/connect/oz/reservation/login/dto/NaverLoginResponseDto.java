@@ -8,7 +8,6 @@ public class NaverLoginResponseDto {
     @JsonProperty("response")
     private NaverLoginUserDto user;
 
-
     public String getMessage() {
         return message;
     }
