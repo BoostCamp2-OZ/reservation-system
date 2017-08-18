@@ -2,24 +2,20 @@ var ajaxModule = (function ($) {
 
     var cachedData = {};
 
-    function cachingAjax(options, callback) {
+    function cachingAjax(options) {
         var cachingData = cachedData[options.url];
 
         if (cachingData) {
-            //튜터링 수정...
-            setTimeout(function(){
-                callback(cachingData);
-            },0);
+            return Promise.resolve(cachingData);
         } else {
-            $.ajax({
+            return $.ajax({
                 url: options.url,
                 method: options.method || 'GET',
-                data: options.data || null,
+                data: JSON.stringify(options.data) || null,
                 contentType: 'application/json'
 
             }).then(function (json) {
-                cachedData[options.url] = json;
-                callback(json);
+                return cachedData[options.url] = json;
             });
         }
     }
