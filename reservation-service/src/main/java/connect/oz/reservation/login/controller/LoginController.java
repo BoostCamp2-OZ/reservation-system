@@ -75,7 +75,6 @@ public class LoginController {
 
             if (accessToken != null && !accessToken.isEmpty()) {
                 Users naverLoginUserDto = getUserProfile(accessToken);
-                System.out.println("==============>" + naverLoginUserDto.toString());
                 if (naverLoginUserDto != null) {
 
                     boolean success = loginService.login(naverLoginUserDto);
@@ -85,13 +84,13 @@ public class LoginController {
                         Users user = loginService.selectUsers(naverLoginUserDto.getSnsId());
                         //세션에 저장
                         request.getSession().setAttribute("loginedUser", user);
-                    } else return "redirect:/";
+                    }
 
                 }
             }
         }
 
-        return "redirect:/" + redirectUrl;
+        return "redirect:" + redirectUrl;
     }
 
     public NaverLoginUserDto getUserProfile(String accessToken) {

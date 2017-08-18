@@ -12,4 +12,9 @@ public class ReservationController {
     public String getReserve(@PathVariable("id") Long productId) {
         return "reserve";
     }
+
+    @GetMapping("/my")
+    public String getMyReserve() {
+        return "myreservation";
+    }
 }
