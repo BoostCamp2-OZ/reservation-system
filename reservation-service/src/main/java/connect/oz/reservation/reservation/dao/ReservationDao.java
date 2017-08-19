@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReservationDao {
     long insertReservation(Reservation reservation);
-    DetailProductDto selectReservableProduct(Long productId);
+    //DetailProductDto selectReservableProduct(Long productId);
     List<MyReservationDto> selectReservationByUserId(long userId);
     int updateReservation(long id, int type);
 }
