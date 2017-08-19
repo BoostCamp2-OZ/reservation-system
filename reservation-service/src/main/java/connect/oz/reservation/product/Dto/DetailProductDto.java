@@ -14,6 +14,8 @@ public class DetailProductDto {
     private String event;
     private Timestamp salesStart;
     private Timestamp salesEnd;
+    private Timestamp displayStart;
+    private Timestamp displayEnd;
     private int salesFlag;
     private String content;
     private String observationTime;
@@ -163,6 +165,23 @@ public class DetailProductDto {
         this.prices = prices;
     }
 
+
+    public Timestamp getDisplayStart() {
+        return displayStart;
+    }
+
+    public void setDisplayStart(Timestamp displayStart) {
+        this.displayStart = displayStart;
+    }
+
+    public Timestamp getDisplayEnd() {
+        return displayEnd;
+    }
+
+    public void setDisplayEnd(Timestamp displayEnd) {
+        this.displayEnd = displayEnd;
+    }
+
     @Override
     public String toString() {
         return "DetailProductDto{" +
@@ -172,6 +191,8 @@ public class DetailProductDto {
                 ", event='" + event + '\'' +
                 ", salesStart=" + salesStart +
                 ", salesEnd=" + salesEnd +
+                ", displayStart=" + displayStart +
+                ", displayEnd=" + displayEnd +
                 ", salesFlag=" + salesFlag +
                 ", content='" + content + '\'' +
                 ", observationTime='" + observationTime + '\'' +

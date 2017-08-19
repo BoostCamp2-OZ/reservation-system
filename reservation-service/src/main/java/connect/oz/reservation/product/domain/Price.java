@@ -1,6 +1,5 @@
 package connect.oz.reservation.product.domain;
 
-import org.mockito.internal.verification.Times;
 
 import java.sql.Timestamp;
 

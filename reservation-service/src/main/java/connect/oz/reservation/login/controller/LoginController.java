@@ -52,11 +52,11 @@ public class LoginController {
     public String callback(
             @RequestParam String state,
             @RequestParam String code,
-            HttpServletRequest request) {
+            HttpSession session) {
 
         // 세션에 저장된 토큰을 받아옵니다.
-        String storedState = (String) request.getSession().getAttribute("state");
-        String redirectUrl = (String) request.getSession().getAttribute("redirectUrl");
+        String storedState = (String) session.getAttribute("state");
+        String redirectUrl = (String) session.getAttribute("redirectUrl");
 
         // 세션에 저장된 토큰과 인증을 요청해서 받은 토큰이 일치하는지 검증합니다.
         if (!state.equals(storedState)) {
@@ -75,7 +75,6 @@ public class LoginController {
 
             if (accessToken != null && !accessToken.isEmpty()) {
                 Users naverLoginUserDto = getUserProfile(accessToken);
-                System.out.println("==============>" + naverLoginUserDto.toString());
                 if (naverLoginUserDto != null) {
 
                     boolean success = loginService.login(naverLoginUserDto);
@@ -84,14 +83,15 @@ public class LoginController {
                         //디비에 저장
                         Users user = loginService.selectUsers(naverLoginUserDto.getSnsId());
                         //세션에 저장
-                        request.getSession().setAttribute("loginedUser", user);
-                    } else return "redirect:/";
-
+                        session.setAttribute("loginedUser", user);
+                        logger.info("redirectUrl : "+redirectUrl);
+                        return "redirect:"+redirectUrl;
+                    }
                 }
             }
         }
 
-        return "redirect:/" + redirectUrl;
+        return "redirect:/";
     }
 
     public NaverLoginUserDto getUserProfile(String accessToken) {

@@ -1,8 +1,9 @@
 package connect.oz.reservation.product.dao;
 
+import connect.oz.reservation.product.domain.Image;
+import connect.oz.reservation.product.domain.Price;
 import connect.oz.reservation.product.dto.DetailProductDto;
 import connect.oz.reservation.product.dto.SimpleProductDto;
-import connect.oz.reservation.product.domain.Image;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public interface ProductDao {
 
     int selectProductCountByCategoryId(Long categoryId) throws EmptyResultDataAccessException;
 
-    public DetailProductDto selectProductById(Long productId);
+    DetailProductDto selectProductById(Long productId);
 
-    public List<Image> selectProductImageListById(Long productId);
+    List<Image> selectProductImageListById(Long productId);
 
+    List<Price> selectProductPriceListById(Long productId);
 }

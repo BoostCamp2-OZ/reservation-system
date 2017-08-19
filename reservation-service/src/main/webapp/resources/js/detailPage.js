@@ -8,9 +8,11 @@ $(function () {
     }
 
     function eventBind() {
+
         $('.section_btn').on('click', '.bk_btn', clickReservableProduct);
         $('.list_short_review').on('click', '.thumb_area', openPhotoViewer);
         $('#photoviewer').on('click', 'label', closePhotoViewer);
+
     }
 
     function clickReservableProduct(e) {

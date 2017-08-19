@@ -1,4 +1,36 @@
 package connect.oz.reservation.reservation.service;
 
-public class ReservationServiceImpl {
+import connect.oz.reservation.product.dao.ProductDao;
+import connect.oz.reservation.product.dto.DetailProductDto;
+import connect.oz.reservation.reservation.dao.ReservationDao;
+import connect.oz.reservation.reservation.domain.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class ReservationServiceImpl implements  ReservationService{
+
+    private ProductDao productDao;
+    private ReservationDao reservationDao;
+
+    @Autowired
+    public ReservationServiceImpl(ProductDao productDao, ReservationDao reservationDao) {
+        this.productDao = productDao;
+        this.reservationDao = reservationDao;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DetailProductDto selectReservableProduct(Long productId) {
+        DetailProductDto detailProductDto = productDao.selectProductById(productId);
+        detailProductDto.setFiles(productDao.selectProductImageListById(productId));
+        detailProductDto.setPrices(productDao.selectProductPriceListById(productId));
+        return detailProductDto;
+    }
+
+    @Override
+    public long insertReservation(Reservation reservation) {
+        return reservationDao.insertReservation(reservation);
+    }
 }
