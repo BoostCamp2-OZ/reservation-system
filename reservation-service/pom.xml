@@ -194,13 +194,12 @@
 			<version>${logback.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<!-- validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

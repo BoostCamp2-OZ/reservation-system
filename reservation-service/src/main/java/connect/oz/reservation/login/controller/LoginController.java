@@ -84,14 +84,13 @@ public class LoginController {
                         Users user = loginService.selectUsers(naverLoginUserDto.getSnsId());
                         //세션에 저장
                         session.setAttribute("loginedUser", user);
-                        logger.info("redirectUrl : "+redirectUrl);
-                        return "redirect:"+redirectUrl;
                     }
+
                 }
             }
         }
 
-        return "redirect:/";
+        return "redirect:" + redirectUrl;
     }
 
     public NaverLoginUserDto getUserProfile(String accessToken) {

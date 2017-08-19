@@ -35,4 +35,8 @@ public class ReservationController {
         return "reserve";
     }
 
+    @GetMapping("/my")
+    public String getMyReserve() {
+        return "myreservation";
+    }
 }

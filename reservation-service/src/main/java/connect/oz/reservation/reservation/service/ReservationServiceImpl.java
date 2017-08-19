@@ -33,4 +33,29 @@ public class ReservationServiceImpl implements  ReservationService{
     public long insertReservation(Reservation reservation) {
         return reservationDao.insertReservation(reservation);
     }
+
+    @Override
+    public int updateReservation(MyReservationDto reservation) {
+        long id = reservation.getRid();
+        int type = reservation.getReservationType();
+        if(id > 0 && type > 0) {
+            return reservationDao.updateReservation(id, type);
+        }
+
+        return 0;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<MyReservationDto> selectReservation(long userId) {
+        List<MyReservationDto> list = reservationDao.selectReservationByUserId(userId);
+        for (MyReservationDto dto : list) {
+            int totoalPrice = dto.getGeneralTotalPrice() + dto.getYouthTotalPrice() + dto.getChildTotalPrice();
+            dto.setTotalPrice(totoalPrice);
+        }
+        return list;
+    }
+
+
+
 }

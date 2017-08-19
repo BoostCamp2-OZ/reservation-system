@@ -46,8 +46,9 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/myreservation")
                 .addPathPatterns("/reservations/products/{productId:[\\\\\\d]+}");
+                .addPathPatterns("/reservations/my")
+                .addPathPatterns("/reservations/{reserveId:[\\d]+}");
     }
 
     @Override
