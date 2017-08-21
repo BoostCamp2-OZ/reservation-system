@@ -34,7 +34,7 @@ public class FileController {
 
         String originalFilename=file.getFileName();
         String contentType="image/jpeg";
-        int fileSize = file.getFileLength();
+        long fileSize = file.getFileLength();
         String saveFileName=file.getSaveFileName();
 
         response.setHeader("Content-Disposition", "attachment; filename=\""+originalFilename+"\";");

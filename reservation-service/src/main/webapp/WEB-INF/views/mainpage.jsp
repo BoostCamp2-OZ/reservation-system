@@ -12,7 +12,7 @@
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
     <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script id="categoryTemplate" , type="text/x-handlears-template">
+    <script id="categoryTemplate" type="text/x-handlears-template">
         {{#each this}}
         <li class="item" data-category="{{id}}">
             <a class="anchor"> <span>{{name}}</span> </a>

@@ -27,7 +27,7 @@ public class ProductController {
         return "mainpage";
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/{id:[\\d]+}")
     public String getDetail(@PathVariable("id") Long productId, Model model) {
         DetailProductDto detailProductDto = productService.selectProductById(productId);
         SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");

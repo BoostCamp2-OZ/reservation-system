@@ -12,7 +12,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
+    <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script id="reviewImageTemplate" type="text/x-handlears-template">
+        {{#each this}}
+        <li class="item">
+            <a href="#" class="anchor">
+                <span class="spr_book ico_del">삭제</span>
+            </a>
+            <img src="{{this}}" width="130" alt="" class="item_thumb">
+            <span class="img_border"></span>
+        </li>
+        {{/each}}
+    </script>
 </head>
+
+
+
+
 
 <body>
 <div id="container">
@@ -68,7 +84,7 @@
 						</span>
                     <span class="left_space">(단, 리뷰 포인트는 ID 당 1일 최대 5건까지 지급됩니다.)</span>
                 </a>
-                <textarea cols="30" rows="10" class="review_textarea"></textarea>
+                <textarea cols="30" rows="10" class="review_textarea" maxlength="400" style="resize: none"></textarea>
             </div>
             <!-- //리뷰 입력 -->
 
@@ -90,41 +106,7 @@
                 <div class="review_photos review_photos_write">
                     <div class="item_preview_thumbs">
                         <ul class="lst_thumb">
-                            <li class="item">
-                                <a href="#" class="anchor">
-                                    <span class="spr_book ico_del">삭제</span>
-                                </a>
-                                <img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-                                <span class="img_border"></span>
-                            </li>
-                            <li class="item">
-                                <a href="#" class="anchor">
-                                    <span class="spr_book ico_del">삭제</span>
-                                </a>
-                                <img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-                                <span class="img_border"></span>
-                            </li>
-                            <li class="item">
-                                <a href="#" class="anchor">
-                                    <span class="spr_book ico_del">삭제</span>
-                                </a>
-                                <img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-                                <span class="img_border"></span>
-                            </li>
-                            <li class="item">
-                                <a href="#" class="anchor">
-                                    <span class="spr_book ico_del">삭제</span>
-                                </a>
-                                <img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-                                <span class="img_border"></span>
-                            </li>
-                            <li class="item">
-                                <a href="#" class="anchor">
-                                    <span class="spr_book ico_del">삭제</span>
-                                </a>
-                                <img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-                                <span class="img_border"></span>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -134,7 +116,7 @@
             <!-- //리뷰 작성 푸터 -->
 
             <!-- 리뷰 등록 -->
-            <div class="box_bk_btn">
+            <div class="box_bk_btn" data-id="${productId}">
                 <button class="bk_btn"><span class="btn_txt">리뷰 등록</span></button>
             </div>
             <!-- //리뷰 등록 -->
@@ -151,5 +133,14 @@
     </div>
 </footer>
 </body>
+<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
+<script src="/resources/js/common/util.js"></script>
+<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
+<script src="/resources/js/component/ratingComponent.js"></script>
+<script src="/resources/js/module/reviewWrite.js"></script>
+<script src="/resources/js/component/imageUploadComponent.js"></script>
+<script src="/resources/js/component/resultFormComponent.js"></script>
+<script src="/resources/js/reviewWritePage.js"></script>
+
 
 </html>

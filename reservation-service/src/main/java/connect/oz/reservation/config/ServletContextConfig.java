@@ -18,7 +18,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
         "connect.oz.reservation.*.controller",
         "connect.oz.reservation.interceptor",
-        "connect.oz.reservation.util"
+        "connect.oz.reservation.util",
+        "connect.oz.reservation.exception"
 })
 public class ServletContextConfig extends WebMvcConfigurerAdapter {
 
@@ -42,7 +43,8 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/myreservation")
-                .addPathPatterns("/reservation/{reserveId:[\\\\d]+}");
+                .addPathPatterns("/reservation/{reserveId:[\\d]+}")
+                .addPathPatterns("/reviewWrite/{productId:[\\d]+}");
     }
 
     @Override

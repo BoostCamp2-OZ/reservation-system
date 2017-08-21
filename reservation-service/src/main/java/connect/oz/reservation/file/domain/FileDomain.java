@@ -7,7 +7,7 @@ public class FileDomain {
     private long userId;
     private String fileName;
     private String saveFileName;
-    private int fileLength;
+    private long fileLength;
     private String contentType;
     private int deleteFlag;
     private Timestamp createDate;
@@ -45,11 +45,11 @@ public class FileDomain {
         this.saveFileName = saveFileName;
     }
 
-    public int getFileLength() {
+    public long getFileLength() {
         return fileLength;
     }
 
-    public void setFileLength(int fileLength) {
+    public void setFileLength(long fileLength) {
         this.fileLength = fileLength;
     }
 
