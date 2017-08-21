@@ -13,10 +13,7 @@ $(function () {
         $('.list_short_review').on('click', '.thumb_area', openPhotoViewer);
         $('#photoviewer').on('click', 'label', closePhotoViewer);
         $('.section_store_details').on('click','.bk_more', contentMoreToggle);
-        //1. 오시는길 클릭
         $('.info_tab_lst').on('click', '._path', clickDisplayInfo);
-
-        //2. 상세 정보 클릭
         $('.info_tab_lst').on('click', '._detail', clickDetailInfo);
     }
 

@@ -17,6 +17,7 @@ public class CommentServiceImpl implements CommentService {
 
     private CommentDao commentDao;
 
+
     @Autowired
     public CommentServiceImpl(CommentDao commentDao) {
         this.commentDao = commentDao;
@@ -29,16 +30,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(readOnly = true)
-    public Map<String, Object> selectComments(Long productId, int offset) {
+    public Map<String, Object> selectComments(Long productId, int offset, int limit) {
         Map<String, Object> result = new HashMap<String, Object>();
-        List<CommentDto> comments = commentDao.selectComments(productId, offset);
-
+        List<CommentDto> comments = commentDao.selectComments(productId, offset,limit);
         CommentSummaryDto commentsSummary = commentDao.selectCommentSummary(productId);
-
         result.put("comments", comments);
         result.put("commentsSummary", commentsSummary);
         return result;
     }
-
-
 }

@@ -10,8 +10,8 @@ var CommentList = (function () {
     }
 
     function getComments() {
-        var productId = $('.group_visual').data('product-id');
-        var offset = 0;
+        var productId = $commentSummary.data('product-id');
+        var offset = $('.list_short_review').find('li').length;
 
         var result = ajaxModule.ajax({
             url: '/api/comments/products/' + productId + '/offset/' + offset,
@@ -46,6 +46,7 @@ var CommentList = (function () {
     function renderingCommentsSummary(commentsSummary) {
         var average = commentsSummary.average;
         var rating = average / 5.0 * 100;
+        $commentSummary.attr('data-product-id',commentsSummary.productId);
         $commentSummary.find('.text_value span').text(average);
         $commentSummary.find('em.green').text(commentsSummary.totalCount);
         $commentSummary.find('.graph_value').css('width', rating + '%');
@@ -53,7 +54,8 @@ var CommentList = (function () {
 
 
     return {
-        init: init
+        init: init,
+        getComment: getComments
     }
 
 })();

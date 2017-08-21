@@ -19,15 +19,13 @@ public class CommentDaoTest {
 
     @Autowired
     private CommentDao commentDao;
-
-
     @Test
     public void shouldSelectComments() {
         Long proudctId = 1L;
         int offset = 0;
         int limit = 3;
 
-        List<CommentDto> comments = commentDao.selectComments(proudctId, offset);
+        List<CommentDto> comments = commentDao.selectComments(proudctId, offset,limit);
         Assert.assertNotNull(comments);
     }
 
