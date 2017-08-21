@@ -32,10 +32,16 @@ $(function () {
 
         var commentId = $(e.currentTarget).data('comment-id');
 
-        ajaxModule.ajax({
+        var result = ajaxModule.ajax({
             url: '/api/comments/' + commentId + '/images',
             method: 'GET'
-        }, renderingCommentImages);
+        });
+
+        result.then(function(data) {
+            renderingCommentImages(data);
+        }, function(err) {
+            alert('error:', err);
+        });
 
     }
 

@@ -13,10 +13,16 @@ var CommentList = (function () {
         var productId = $('.group_visual').data('product-id');
         var offset = 0;
 
-        ajaxModule.ajax({
+        var result = ajaxModule.ajax({
             url: '/api/comments/products/' + productId + '/offset/' + offset,
             method: 'GET'
-        }, renderingComments);
+        });
+
+        result.then(function(data) {
+            renderingComments(data);
+        }, function(err) {
+            alert('error:', err);
+        });
 
     }
 

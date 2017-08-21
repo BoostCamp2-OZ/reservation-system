@@ -31,12 +31,16 @@ var mainProductList = (function(){
 
         var categoryId = $('.active').closest('.item').data('category');
 
-        ajaxModule.ajax({
+        var result = ajaxModule.ajax({
             url: '/api/products/categories/' + categoryId + '/offset/' + offset,
             method: 'GET'
-        }, function (data) {
-            _productRendering('html', data);
         });
+
+        result.then(function(data) {
+            _productRendering('html', data);
+        }, function(err) {
+            alert('error:',err);
+        })
 
     }
 
@@ -44,12 +48,16 @@ var mainProductList = (function(){
         var offset = $productContainer.find('.item').length;
         var categoryId = $('.active').closest('.item').data('category');
 
-        ajaxModule.ajax({
+        var result = ajaxModule.ajax({
             url: '/api/products/categories/' + categoryId + '/offset/' + offset,
             method: 'GET'
-        }, function (data) {
-            _productRendering('append', data);
         });
+
+        result.then(function(data) {
+            _productRendering('append', data);
+        }, function(err) {
+            alert('error:',err);
+        })
     }
 
 
@@ -104,11 +112,16 @@ var mainProductList = (function(){
 
     function _getCategories() {
 
-        ajaxModule.ajax({
+        var result = ajaxModule.ajax({
             url: '/api/categories',
             method: 'GET'
-        }, _categoryRendering);
+        });
 
+        result.then(function(data) {
+            _categoryRendering(data);
+        }, function(err) {
+            alert('error:', err);
+        });
     }
 
 
