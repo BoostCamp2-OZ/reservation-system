@@ -30,8 +30,11 @@ public class DbConfig {
     @Value("${main.product.limit}")
     private int mainProductLimit;
 
-    @Value("${detail.comment.limit}")
+    @Value("${comment.limit}")
     private int commentLimit;
+
+    @Value("${preview.comment.limit}")
+    private int previewCommentLimit;
 
     @Bean
     public DataSource dataSource() {
@@ -56,5 +59,10 @@ public class DbConfig {
     @Bean
     public int commentLimit() {
         return commentLimit;
+    }
+
+    @Bean
+    public int previewCommentLimit(){
+        return previewCommentLimit;
     }
 }

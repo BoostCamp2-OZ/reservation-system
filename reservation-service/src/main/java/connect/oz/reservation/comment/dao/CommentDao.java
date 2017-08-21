@@ -10,11 +10,12 @@ import java.util.List;
 public interface CommentDao {
     List<CommentImage> selectCommentImages(Long commentId);
 
-    List<CommentDto> selectComments(Long productId, int offset);
+    List<CommentDto> selectComments(Long productId, int offset, int limit);
 
     CommentSummaryDto selectCommentSummary(Long productId);
 
     Long insertComment(CommentInsertDto commentInsertDto);
 
     Long insertCommentImage(CommentImage commentImage);
+
 }

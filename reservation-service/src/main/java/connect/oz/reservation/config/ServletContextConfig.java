@@ -1,10 +1,12 @@
 package connect.oz.reservation.config;
 
 import connect.oz.reservation.interceptor.LoginInterceptor;
+import connect.oz.reservation.resolver.UserWebArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -42,9 +46,9 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/myreservation")
-                .addPathPatterns("/reservation/{reserveId:[\\d]+}")
-                .addPathPatterns("/reviewWrite/{productId:[\\d]+}");
+                .addPathPatterns("/reservations/products/{productId:[\\\\\\d]+}")
+                .addPathPatterns("/reservations/my")
+                .addPathPatterns("/reservations/{reserveId:[\\\\\\d]+}");
     }
 
     @Override
@@ -53,4 +57,8 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(new UserWebArgumentResolver()); //Session에있는 loginedUser값을 가져와서 Users 객체 초기화하는 어노테이션...
+    }
 }

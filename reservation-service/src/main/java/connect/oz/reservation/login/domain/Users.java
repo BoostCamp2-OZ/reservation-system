@@ -105,4 +105,21 @@ public class Users {
     public void setModifyDate(Timestamp modifyDate) {
         this.modifyDate = modifyDate;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", snsId=" + snsId +
+                ", snsType='" + snsType + '\'' +
+                ", snsProfile='" + snsProfile + '\'' +
+                ", adminFlag=" + adminFlag +
+                ", createDate=" + createDate +
+                ", modifyDate=" + modifyDate +
+                '}';
+    }
 }

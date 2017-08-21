@@ -1,6 +1,7 @@
 package connect.oz.reservation.product.dao;
 
 import connect.oz.reservation.product.domain.Image;
+import connect.oz.reservation.product.domain.Price;
 import connect.oz.reservation.product.dto.DetailProductDto;
 import connect.oz.reservation.product.dto.SimpleProductDto;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ public class ProductDaoImpl implements ProductDao {
     private RowMapper<SimpleProductDto> simpleProductRowMapper = BeanPropertyRowMapper.newInstance(SimpleProductDto.class);
     private RowMapper<DetailProductDto> detailProductDtoRowMapper = BeanPropertyRowMapper.newInstance(DetailProductDto.class);
     private RowMapper<Image> imageRowMapper = BeanPropertyRowMapper.newInstance(Image.class);
+    private RowMapper<Price> priceRowMapper = BeanPropertyRowMapper.newInstance(Price.class);
 
     @Autowired
     private int mainProductLimit;
@@ -68,6 +70,7 @@ public class ProductDaoImpl implements ProductDao {
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCTS_COUNT_BY_CATEGORY_ID, params, Integer.class);
     }
 
+    @Override
     public DetailProductDto selectProductById(Long productId) {
         Map<String, Object> params = Collections.singletonMap("productId", productId);
         return jdbc.queryForObject(ProductSqls.SELECT_PRODUCT_BY_ID, params, detailProductDtoRowMapper);
@@ -77,5 +80,11 @@ public class ProductDaoImpl implements ProductDao {
     public List<Image> selectProductImageListById(Long productId) {
         Map<String, Object> params = Collections.singletonMap("productId", productId);
         return jdbc.query(ProductSqls.SELECT_PRODUCT_IMGAE_LIST, params, imageRowMapper);
+    }
+
+    @Override
+    public List<Price> selectProductPriceListById(Long productId) {
+        Map<String, Object> params = Collections.singletonMap("productId", productId);
+        return jdbc.query(ProductSqls.SELECT_PRODUCT_PRICE_LIST, params, priceRowMapper);
     }
 }

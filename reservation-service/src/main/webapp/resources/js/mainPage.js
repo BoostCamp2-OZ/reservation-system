@@ -1,6 +1,5 @@
 $(function () {
 
-
     mainProductList.init();
 
     var rolling = new RollingComponent($('div.group_visual'));

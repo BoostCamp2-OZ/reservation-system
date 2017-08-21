@@ -10,7 +10,8 @@ import java.util.Map;
 public interface CommentService {
     List<CommentImage> selectCommentImages(Long commentId);
 
-    Map<String, Object> selectComments(Long productId, int offset);
-
     Long insertComment(CommentInsertDto comment);
+
+    Map<String, Object> selectComments(Long productId, int offset, int limit);
+
 }

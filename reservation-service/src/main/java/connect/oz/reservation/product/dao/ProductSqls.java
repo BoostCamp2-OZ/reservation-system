@@ -42,7 +42,7 @@ public class ProductSqls {
                     + " P.id, P.name, P.description, P.event,"
                     + " P.sales_start, P.sales_end, P.sales_flag,"
                     + " DI.observation_time, DI.place_name, DI.place_lot, DI.place_street,"
-                    + " DI.tel, DI.homepage, DI.email, PD.content"
+                    + " DI.tel, DI.homepage, DI.email, DI.display_start, DI.display_end, PD.content"
                     + " FROM product AS P"
                     + " JOIN product_detail AS PD ON P.id = PD.product_id"
                     + " JOIN display_info AS DI ON P.id = DI.product_id"
@@ -57,4 +57,11 @@ public class ProductSqls {
                     + " AND F.file_length > 0"
                     + " AND P.id = :productId"
                     + " ORDER BY PI.type ASC";
+
+    final static String SELECT_PRODUCT_PRICE_LIST =
+            "SELECT id, product_id, price, price_type, discount_rate,"
+                    + " create_date, modify_date"
+                    + " FROM product_price"
+                    + " WHERE product_id = :productId";
+
 }

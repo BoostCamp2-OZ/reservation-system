@@ -22,9 +22,14 @@ public class CommentRestController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private CommentService commentService;
 
+    private int previewCommentLimit;
+    private int commentLimit;
+
     @Autowired
-    public CommentRestController(CommentService commentService) {
+    public CommentRestController(CommentService commentService, int previewCommentLimit, int commentLimit) {
         this.commentService = commentService;
+        this.previewCommentLimit = previewCommentLimit;
+        this.commentLimit = commentLimit;
     }
 
     @GetMapping("/{commentId}/images")
@@ -34,7 +39,13 @@ public class CommentRestController {
 
     @GetMapping("/products/{productId}/offset/{offset}")
     public Map<String, Object> selectComments(@PathVariable Long productId, @PathVariable int offset) {
-        return commentService.selectComments(productId, offset);
+
+        if(offset == 0){
+            return commentService.selectComments(productId, 0 ,previewCommentLimit);
+        }else{
+            return commentService.selectComments(productId, offset,commentLimit);
+        }
+
     }
 
     @PostMapping

@@ -63,7 +63,7 @@
                 <a href="/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
                 <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
             </h1>
-            <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
+            <a href="/reservations/my" class="btn_my"> <span title="내 예약">MY</span> </a>
         </header>
     </div>
     <div class="ct main">
@@ -188,13 +188,13 @@
                     </div>
                     <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
                 </div>
-                <a class="btn_review_more" href="#"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
+                <a class="btn_review_more" href="/comments/product/${product.id}"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
             </div>
             <div class="section_info_tab">
                 <!-- [D] tab 선택 시 anchor에 active 추가 -->
                 <ul class="info_tab_lst">
                     <li class="item active _detail">
-                        <a href="#" class="anchor"> <span>상세정보</span> </a>
+                        <a href="#" class="anchor active"> <span>상세정보</span> </a>
                     </li>
                     <li class="item _path">
                         <a href="#" class="anchor"> <span>오시는길</span> </a>
@@ -230,7 +230,7 @@
                 <div class="detail_location hide">
                     <div class="box_store_info no_topline">
                         <a href="#" class="store_location" title="지도웹으로 연결">
-                            <img class="store_map img_thumb" alt="map" src="https://simg.pstatic.net/static.map/image?version=1.1&amp;crs=EPSG:4326&amp;baselayer=bl_vc_bg&amp;exception=xml&amp;scale=2&amp;caller=mw_smart_booking&amp;overlayers=ol_vc_an&amp;center=127.0011948,37.5717079&amp;markers=type,default2,127.0011948,37.5717079&amp;level=11&amp;w=340&amp;h=150">
+                            <img class="store_map img_thumb" alt="map" src="">
                             <span class="img_border"></span>
                             <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
                         </a>
@@ -243,7 +243,7 @@
                                     <span class="addr_old">지번</span>
                                     <span class="addr_old_detail">${product.placeLot}  </span>
                                 </p>
-                                <p class="store_addr addr_detail">두산아트센터 연강홀</p>
+                                <p class="store_addr addr_detail">${product.placeName}</p>
                             </div>
                             <div class="lst_store_info_wrap">
                                 <c:if test="${product.tel ne ''}">
@@ -319,6 +319,8 @@
 <script src="/resources/js/common/util.js"></script>
 <script src="/resources/js/component/moveComponent.js"></script>
 <script src="/resources/js/component/flickingComponent.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=cYcPk9usu3TaN83mu0va&submodules=geocoder"></script>
+<script src="/resources/js/module/naverMap.js"></script>
 <script src="/resources/js/module/commentList.js"></script>
 <script src="/resources/js/detailPage.js"></script>
 
