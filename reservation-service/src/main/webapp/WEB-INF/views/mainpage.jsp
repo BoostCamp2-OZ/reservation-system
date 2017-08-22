@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
+<<<<<<< HEAD
     <%--<script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>--%>
     <%--<script id="categoryTemplate" , type="text/x-handlears-template">--%>
         <%--{{#each this}}--%>
@@ -20,6 +21,17 @@
         <%--{{/each}}--%>
     <%--</script>--%>
     <%--<script id="productTemplate" , type="text/x-handlears-template">--%>
+=======
+    <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script id="categoryTemplate" type="text/x-handlears-template">
+        {{#each this}}
+        <li class="item" data-category="{{id}}">
+            <a class="anchor"> <span>{{name}}</span> </a>
+        </li>
+        {{/each}}
+    </script>
+    <script id="productTemplate" , type="text/x-handlears-template">
+>>>>>>> f857217a750fcef863af6700cf1d302d98b23693
 
         <%--<li class="item">--%>
             <%--<a href="/products/{{id}}" class="item_book">--%>

@@ -13,47 +13,7 @@
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/photoviewer.css" rel="stylesheet">
-    <%--<script src="/resources/node_modules/handlebars/dist/handlebars.js"></script>--%>
-
-    <%--<script id="commentTemplate" type="template/x-handlebars">--%>
-        <%--{{#each comments}}--%>
-        <%--<li class="list_item">--%>
-            <%--<div>--%>
-                <%--<div class="review_area">--%>
-                    <%--<div class="thumb_area" data-comment-id="{{id}}">--%>
-                        <%--{{#if fileId}}--%>
-                        <%--<a href="#" class="thumb" title="이미지 크게 보기">--%>
-                            <%--<img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a>--%>
-                        <%--<span class="img_count">{{imageCount}}</span>--%>
-                        <%--{{/if}}--%>
-                    <%--</div>--%>
-                    <%--<h4 class="resoc_name">{{lookup ../this.commentsSummary "productName"}}</h4>--%>
-                    <%--<p class="review">{{comment}}</p>--%>
-                <%--</div>--%>
-                <%--<div class="info_area">--%>
-                    <%--<div class="review_info"> <span class="grade">{{score}}</span> <span class="name">{{userName}}</span> <span class="date">{{createDate}}</span> </div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</li>--%>
-        <%--{{/each}}--%>
-    <%--</script>--%>
-
-    <%--<script id="popupImageTempl" type="text/x-handlebars-template">--%>
-        <%--{{#each this}}--%>
-        <%--<li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/{{fileId}}">--%>
-            <%--&lt;%&ndash;<span class="img_bg"></span>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<div class="visual_txt">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<div class="visual_txt_inn">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<h2 class="visual_txt_tit" > <span>${product.name}</span> </h2>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<p class="visual_txt_dsc">${product.description}</p>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--</li>--%>
-        <%--{{/each}}--%>
-    <%--</script>--%>
 </head>
-
-
 
 <body>
 <div id="container" >
@@ -188,13 +148,13 @@
                     </div>
                     <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
                 </div>
-                <a class="btn_review_more" href="#"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
+                <a class="btn_review_more" href="/comments/product/${product.id}"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
             </div>
             <div class="section_info_tab">
                 <!-- [D] tab 선택 시 anchor에 active 추가 -->
                 <ul class="info_tab_lst">
                     <li class="item active _detail">
-                        <a href="#" class="anchor"> <span>상세정보</span> </a>
+                        <a href="#" class="anchor active"> <span>상세정보</span> </a>
                     </li>
                     <li class="item _path">
                         <a href="#" class="anchor"> <span>오시는길</span> </a>
@@ -230,7 +190,7 @@
                 <div class="detail_location hide">
                     <div class="box_store_info no_topline">
                         <a href="#" class="store_location" title="지도웹으로 연결">
-                            <img class="store_map img_thumb" alt="map" src="https://simg.pstatic.net/static.map/image?version=1.1&amp;crs=EPSG:4326&amp;baselayer=bl_vc_bg&amp;exception=xml&amp;scale=2&amp;caller=mw_smart_booking&amp;overlayers=ol_vc_an&amp;center=127.0011948,37.5717079&amp;markers=type,default2,127.0011948,37.5717079&amp;level=11&amp;w=340&amp;h=150">
+                            <img class="store_map img_thumb" alt="map" src="">
                             <span class="img_border"></span>
                             <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
                         </a>
@@ -243,7 +203,7 @@
                                     <span class="addr_old">지번</span>
                                     <span class="addr_old_detail">${product.placeLot}  </span>
                                 </p>
-                                <p class="store_addr addr_detail">두산아트센터 연강홀</p>
+                                <p class="store_addr addr_detail">${product.placeName}</p>
                             </div>
                             <div class="lst_store_info_wrap">
                                 <c:if test="${product.tel ne ''}">

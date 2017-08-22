@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 public interface FileDao {
     public FileDomain selectFileById(Long fileId);
+
+    Long insert(FileDomain f);
 }

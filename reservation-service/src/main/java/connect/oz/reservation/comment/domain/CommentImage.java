@@ -28,4 +28,5 @@ public class CommentImage {
     public void setFileId(Long fileId) {
         this.fileId = fileId;
     }
+
 }
