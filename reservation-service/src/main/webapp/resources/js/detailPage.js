@@ -1,4 +1,11 @@
-$(function () {
+var $ = require('jquery');
+var FlickingComponent = require('./component/flickingComponent');
+var ajaxModule = require('./module/ajaxModule');
+var CommentList = require('./module/commentList');
+
+var popupTemplate = require('../templates/comments/popup-photo-list.hbs');
+
+(function () {
 
     var mainFlicking = new FlickingComponent($('div.section_visual'));
     var popupFlicking = null;
@@ -59,7 +66,6 @@ $(function () {
     }
 
     function renderingCommentImages(data) {
-        var popupTemplate = Handlebars.compile($('#popupImageTempl').html());
         $('.popup_image').html(popupTemplate(data));
 
         popupFlicking = new FlickingComponent($('div.popup'));
@@ -70,5 +76,5 @@ $(function () {
     init();
     CommentList.init();
 
-});
+})();
 

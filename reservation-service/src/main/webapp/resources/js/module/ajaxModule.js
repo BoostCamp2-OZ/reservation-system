@@ -1,4 +1,6 @@
-var ajaxModule = (function ($) {
+var $ = require('jquery');
+
+var ajaxModule = (function () {
 
     var cachedData = {};
 
@@ -23,5 +25,6 @@ var ajaxModule = (function ($) {
     return {
         ajax: cachingAjax
     }
+})();
 
-})($);
+module.exports = ajaxModule;

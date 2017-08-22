@@ -1,9 +1,14 @@
+var $ = require('jquery');
+var ajaxModule = require('./ajaxModule');
+var moment = require('moment');
+var commentTemplate = require('../../templates/comments/comment-list.hbs');
+
 var CommentList = (function () {
 
     var $commentSummary = $('div.grade_area');
 
-    var source = $('#commentTemplate').html();
-    var commentTemplate = Handlebars.compile(source);
+    // var source = $('#commentTemplate').html();
+    // var commentTemplate = Handlebars.compile(source);
 
     function init() {
         getComments();
@@ -18,17 +23,17 @@ var CommentList = (function () {
             method: 'GET'
         });
 
-        result.then(function(data) {
+        result.then(function (data) {
             renderingComments(data);
-        }, function(err) {
-            alert('error:', err);
+        }, function (err) {
+            alert('error:' + err);
         });
 
     }
 
     function renderingComments(data) {
 
-        data.comments.forEach(function(comment) {
+        data.comments.forEach(function (comment) {
             comment.createDate = formattingDate(comment.createDate);
             comment.score = comment.score.toFixed(1);
         });
@@ -57,3 +62,5 @@ var CommentList = (function () {
     }
 
 })();
+
+module.exports = CommentList;

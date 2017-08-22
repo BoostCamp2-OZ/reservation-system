@@ -1,4 +1,8 @@
-var MoveComponent = extend(eg.Component, {
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+var $ = require('jquery');
+
+var MoveComponent = extend(egComponent, {
 
 
     init: function ($root, options) {
@@ -14,16 +18,16 @@ var MoveComponent = extend(eg.Component, {
         this._config = Object.assign({}, this._config, options);
         this._config.size = $(this.$root).children('li').length;
 
-        if(this._config.circulation) {
+        if (this._config.circulation) {
             this.rollingInit();
         }
     },
 
-    rollingInit : function() {
+    rollingInit: function () {
         var $slider = $(this.$root);
         var $items = $slider.find('li');
 
-        if($items.length < 3) {
+        if ($items.length < 3) {
             var cloneLast = $items.last().clone(true);
             var cloneFirst = $items.first().clone(true);
 
@@ -33,7 +37,7 @@ var MoveComponent = extend(eg.Component, {
             $items.first().before($items.last());
         }
 
-        $slider.css({'left' : -$items.width()}); // css 초기화
+        $slider.css({'left': -$items.width()}); // css 초기화
 
     },
 
@@ -48,7 +52,12 @@ var MoveComponent = extend(eg.Component, {
         var leftIndent = parseInt($slider.css('left'));
         var movePosition = parseInt(swipe) || 0;
 
-        this.trigger('beforeMove', {index: options.index, size: options.size, circulation: options.circulation, direction: direction});
+        this.trigger('beforeMove', {
+            index: options.index,
+            size: options.size,
+            circulation: options.circulation,
+            direction: direction
+        });
 
         if (direction === 'prev') {
 
@@ -108,3 +117,5 @@ var MoveComponent = extend(eg.Component, {
     }
 
 });
+
+module.exports = MoveComponent;

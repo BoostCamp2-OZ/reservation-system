@@ -1,15 +1,18 @@
-var TicketCount = extend(eg.Component, {
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+
+var TicketCount = extend(egComponent, {
 
     init: function ($root) {
         this._initInstanceValue($root);
         this._eventBind();
     },
 
-    _initInstanceValue: function($root) {
+    _initInstanceValue: function ($root) {
         this.$root = $root;
         this.$countControl = $root.find('.count_control');
         this.$ticketCount = this.$countControl.find('.count_control_input ');
-        this.$minus =  this.$countControl.find('.btn_plus_minus._minus');
+        this.$minus = this.$countControl.find('.btn_plus_minus._minus');
         this.$individualPrice = $root.find('.individual_price');
         this.$totalPrice = this.$individualPrice.find('.total_price');
 
@@ -19,11 +22,11 @@ var TicketCount = extend(eg.Component, {
         this.ticektType = $root.find('.product_amount span').data('type');
     },
 
-    getTicketType: function(){
+    getTicketType: function () {
         return this.ticektType;
     },
 
-    getTicketCount: function(){
+    getTicketCount: function () {
         return this.count;
     },
 
@@ -47,7 +50,7 @@ var TicketCount = extend(eg.Component, {
     _minus: function (e) {
         e.preventDefault();
 
-        if(this.count !== 0){
+        if (this.count !== 0) {
             this.$ticketCount.val(--this.count);
 
             this._activeNumber();
@@ -60,10 +63,10 @@ var TicketCount = extend(eg.Component, {
 
     _activeButton: function () {
 
-        if(this.count === 0 ){
+        if (this.count === 0) {
             this.$minus.addClass('disabled');
         }
-        if(this.count === 1){
+        if (this.count === 1) {
             this.$minus.removeClass('disabled');
         }
 
@@ -71,10 +74,10 @@ var TicketCount = extend(eg.Component, {
 
     _activeNumber: function () {
 
-        if(this.count === 0){
+        if (this.count === 0) {
             this.$ticketCount.addClass('disabled');
         }
-        if(this. count === 1){
+        if (this.count === 1) {
             this.$ticketCount.removeClass('disabled');
         }
 
@@ -84,9 +87,9 @@ var TicketCount = extend(eg.Component, {
 
         this.totalPrice = this.price * this.count;
 
-        if(this.totalPrice > 0) {
+        if (this.totalPrice > 0) {
             this.$individualPrice.addClass('on_color');
-        }else{
+        } else {
             this.$individualPrice.removeClass('on_color');
         }
 
@@ -94,6 +97,6 @@ var TicketCount = extend(eg.Component, {
 
     }
 
-
-
 });
+
+module.exports = TicketCount;

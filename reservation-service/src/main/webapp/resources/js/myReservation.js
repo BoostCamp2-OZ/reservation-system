@@ -1,4 +1,8 @@
-$(function () {
+var $ = require('jquery');
+var ReservationList = require('./module/myReservationList');
+var SummaryBoard = require('./component/summaryBoard');
+
+(function () {
 
     var $summaryBoardWrapper;
     var reservationList;
@@ -44,4 +48,4 @@ $(function () {
 
     init();
 
-});
+})();

@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 var checkReservable = (function () {
 
     var $reservationBtn = $('.bk_btn_wrap');
@@ -90,3 +92,4 @@ var checkReservable = (function () {
 
 })();
 
+module.exports = checkReservable;

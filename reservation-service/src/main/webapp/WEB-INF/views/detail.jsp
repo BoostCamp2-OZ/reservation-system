@@ -13,44 +13,44 @@
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
     <link href="/resources/css/photoviewer.css" rel="stylesheet">
-    <script src="/resources/node_modules/handlebars/dist/handlebars.js"></script>
+    <%--<script src="/resources/node_modules/handlebars/dist/handlebars.js"></script>--%>
 
-    <script id="commentTemplate" type="template/x-handlebars">
-        {{#each comments}}
-        <li class="list_item">
-            <div>
-                <div class="review_area">
-                    <div class="thumb_area" data-comment-id="{{id}}">
-                        {{#if fileId}}
-                        <a href="#" class="thumb" title="이미지 크게 보기">
-                            <img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a>
-                        <span class="img_count">{{imageCount}}</span>
-                        {{/if}}
-                    </div>
-                    <h4 class="resoc_name">{{lookup ../this.commentsSummary "productName"}}</h4>
-                    <p class="review">{{comment}}</p>
-                </div>
-                <div class="info_area">
-                    <div class="review_info"> <span class="grade">{{score}}</span> <span class="name">{{userName}}</span> <span class="date">{{createDate}}</span> </div>
-                </div>
-            </div>
-        </li>
-        {{/each}}
-    </script>
+    <%--<script id="commentTemplate" type="template/x-handlebars">--%>
+        <%--{{#each comments}}--%>
+        <%--<li class="list_item">--%>
+            <%--<div>--%>
+                <%--<div class="review_area">--%>
+                    <%--<div class="thumb_area" data-comment-id="{{id}}">--%>
+                        <%--{{#if fileId}}--%>
+                        <%--<a href="#" class="thumb" title="이미지 크게 보기">--%>
+                            <%--<img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a>--%>
+                        <%--<span class="img_count">{{imageCount}}</span>--%>
+                        <%--{{/if}}--%>
+                    <%--</div>--%>
+                    <%--<h4 class="resoc_name">{{lookup ../this.commentsSummary "productName"}}</h4>--%>
+                    <%--<p class="review">{{comment}}</p>--%>
+                <%--</div>--%>
+                <%--<div class="info_area">--%>
+                    <%--<div class="review_info"> <span class="grade">{{score}}</span> <span class="name">{{userName}}</span> <span class="date">{{createDate}}</span> </div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</li>--%>
+        <%--{{/each}}--%>
+    <%--</script>--%>
 
-    <script id="popupImageTempl" type="text/x-handlebars-template">
-        {{#each this}}
-        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/{{fileId}}">
-            <%--<span class="img_bg"></span>--%>
-            <%--<div class="visual_txt">--%>
-            <%--<div class="visual_txt_inn">--%>
-            <%--<h2 class="visual_txt_tit" > <span>${product.name}</span> </h2>--%>
-            <%--<p class="visual_txt_dsc">${product.description}</p>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-        </li>
-        {{/each}}
-    </script>
+    <%--<script id="popupImageTempl" type="text/x-handlebars-template">--%>
+        <%--{{#each this}}--%>
+        <%--<li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/files/{{fileId}}">--%>
+            <%--&lt;%&ndash;<span class="img_bg"></span>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="visual_txt">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="visual_txt_inn">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<h2 class="visual_txt_tit" > <span>${product.name}</span> </h2>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<p class="visual_txt_dsc">${product.description}</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--</li>--%>
+        <%--{{/each}}--%>
+    <%--</script>--%>
 </head>
 
 
@@ -312,14 +312,5 @@
     </div>
 </div>
 </body>
-<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
-<script src="/resources/node_modules/moment/moment.js"></script>
-<script src="/resources/js/module/ajaxModule.js"></script>
-<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
-<script src="/resources/js/common/util.js"></script>
-<script src="/resources/js/component/moveComponent.js"></script>
-<script src="/resources/js/component/flickingComponent.js"></script>
-<script src="/resources/js/module/commentList.js"></script>
-<script src="/resources/js/detailPage.js"></script>
-
+<script src="/resources/dist/detail.bundle.js"></script>
 </html>

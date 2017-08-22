@@ -1,4 +1,4 @@
-function extend(superClass, def) {
+module.exports = function extend(superClass, def) {
     var extendClass = function extendClass() {
         // Call a parent constructor
         superClass.apply(this, arguments);
@@ -22,7 +22,3 @@ function extend(superClass, def) {
 
     return extendClass;
 };
-
-
-
-
