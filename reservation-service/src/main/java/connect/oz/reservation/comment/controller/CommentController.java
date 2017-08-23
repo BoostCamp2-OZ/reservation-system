@@ -1,8 +1,8 @@
 package connect.oz.reservation.comment.controller;
 
+import org.springframework.stereotype.Controller;
 import connect.oz.reservation.comment.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +31,13 @@ public class CommentController {
         model.addAttribute("commentData",commentData);
         return modelAndView;
 
+    }
+
+    @RequestMapping("/reviewWrite/{productId:[\\d]+}")
+    public ModelAndView reviewWrite(@PathVariable int productId) {
+        ModelAndView mav = new ModelAndView("reviewWrite");
+        mav.addObject("id", productId);
+        return mav;
     }
 
 }

@@ -1,4 +1,8 @@
-var SummaryBoard = extend(eg.Component, {
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+var $ = require('jquery');
+
+var SummaryBoard = extend(egComponent, {
 
     init: function ($root) {
 
@@ -38,3 +42,5 @@ var SummaryBoard = extend(eg.Component, {
 
 
 });
+
+module.exports = SummaryBoard;

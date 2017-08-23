@@ -1,4 +1,8 @@
-$(function () {
+var $ = require('jquery');
+var RollingComponent = require('./component/rollingComponent');
+var mainProductList = require('./module/mainProductList');
+
+(function () {
 
     mainProductList.init();
 
@@ -21,5 +25,5 @@ $(function () {
     infinityScroll(true);
 
 
-});
+})();
 

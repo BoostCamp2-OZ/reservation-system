@@ -1,14 +1,17 @@
 package connect.oz.reservation.comment.controller;
 
 import connect.oz.reservation.comment.domain.CommentImage;
+import connect.oz.reservation.comment.dto.CommentInsertDto;
 import connect.oz.reservation.comment.service.CommentService;
+import connect.oz.reservation.login.domain.Users;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +19,7 @@ import java.util.Map;
 @RequestMapping("/api/comments")
 public class CommentRestController {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private CommentService commentService;
 
     private int previewCommentLimit;
@@ -44,4 +48,14 @@ public class CommentRestController {
 
     }
 
+    @PostMapping
+    public void registerReview(@ModelAttribute CommentInsertDto commentInsertDto, @RequestParam(name="file") MultipartFile[] files, HttpSession session)  {
+        Users users = (Users) session.getAttribute("loginedUser");
+        commentInsertDto.setFiles(files);
+        commentInsertDto.setUserId(users.getId());
+
+        logger.info("dto : {}", commentInsertDto);
+
+        commentService.insertComment(commentInsertDto);
+    }
 }

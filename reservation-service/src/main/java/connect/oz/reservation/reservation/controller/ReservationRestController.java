@@ -34,7 +34,7 @@ public class ReservationRestController {
     }
 
     @PostMapping
-    public Long insertReservation(@AuthUser Users user,@Valid @RequestBody Reservation reservation) {
+    public Long insertReservation(@AuthUser Users user, @Valid @RequestBody Reservation reservation) {
 
         reservation.setUserId(user.getId());
 

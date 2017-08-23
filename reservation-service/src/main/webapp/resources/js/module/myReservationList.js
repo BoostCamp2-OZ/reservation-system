@@ -1,3 +1,11 @@
+var $ = require('jquery');
+var moment = require('moment');
+var egComponent = require('@egjs/component');
+var ajaxModule = require('./ajaxModule');
+var extend = require('../common/util');
+
+var simpleTicketTempl = require('../../templates/myreservation/simple-ticket.hbs');
+
 var TICKET_INFO = [
     {'status': '', 'type': '0', 'statusName': '전체', 'statusClass': ''},
     {'status': '', 'type': '1', 'statusName': '예약 신청중', 'statusClass': 'ico_clock', 'buttonName': '취소'},
@@ -6,8 +14,7 @@ var TICKET_INFO = [
     {'status': 'used', 'type': '4', 'statusName': '취소된 예약', 'statusClass': 'ico_cancel'}
 ];
 
-
-var ReservationList = extend(eg.Component, {
+var ReservationList = extend(egComponent, {
 
     init: function ($base, $popup) {
         this.$base = $base.find('.list_cards');
@@ -114,7 +121,7 @@ var ReservationList = extend(eg.Component, {
         this.currentTab = targetType;
 
         var $cardList = this.$base;
-        var simpleTicketTempl = Handlebars.compile($('#simpleTicket').html());
+        // var simpleTicketTempl = Handlebars.compile($('#simpleTicket').html());
 
         $cardList.html('');
 
@@ -126,7 +133,7 @@ var ReservationList = extend(eg.Component, {
             $cardList.append(simpleTicketTempl(this.filteredTickets[targetType]));
         }
 
-        if($cardList.find('article.card_item').length === 0){
+        if ($cardList.find('article.card_item').length === 0) {
             this.$errBoard.show();
         } else {
             this.$errBoard.hide();
@@ -247,3 +254,5 @@ var ReservationList = extend(eg.Component, {
 
 
 });
+
+module.exports = ReservationList;

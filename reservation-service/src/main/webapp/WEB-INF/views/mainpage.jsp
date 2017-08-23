@@ -11,8 +11,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
+<<<<<<< HEAD
+    <%--<script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>--%>
+    <%--<script id="categoryTemplate" , type="text/x-handlears-template">--%>
+        <%--{{#each this}}--%>
+        <%--<li class="item" data-category="{{id}}">--%>
+            <%--<a class="anchor"> <span>{{name}}</span> </a>--%>
+        <%--</li>--%>
+        <%--{{/each}}--%>
+    <%--</script>--%>
+    <%--<script id="productTemplate" , type="text/x-handlears-template">--%>
+=======
     <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script id="categoryTemplate" , type="text/x-handlears-template">
+    <script id="categoryTemplate" type="text/x-handlears-template">
         {{#each this}}
         <li class="item" data-category="{{id}}">
             <a class="anchor"> <span>{{name}}</span> </a>
@@ -20,21 +31,22 @@
         {{/each}}
     </script>
     <script id="productTemplate" , type="text/x-handlears-template">
+>>>>>>> f857217a750fcef863af6700cf1d302d98b23693
 
-        <li class="item">
-            <a href="/products/{{id}}" class="item_book">
-                <div class="item_preview"><img alt="뮤지컬 인 더 하이츠(IN THE HEIGHTS)" class="img_thumb"
-                                               src="/files/{{fileId}}">
-                    <span class="img_border"></span></div>
-                <div class="event_txt">
-                    <h4 class="event_txt_tit"><span>{{name}}</span>
-                        <small class="sm">{{placeName}}</small>
-                    </h4>
-                    <p class="event_txt_dsc">{{description}}</p>
-                </div>
-            </a>
-        </li>
-    </script>
+        <%--<li class="item">--%>
+            <%--<a href="/products/{{id}}" class="item_book">--%>
+                <%--<div class="item_preview"><img alt="뮤지컬 인 더 하이츠(IN THE HEIGHTS)" class="img_thumb"--%>
+                                               <%--src="/files/{{fileId}}">--%>
+                    <%--<span class="img_border"></span></div>--%>
+                <%--<div class="event_txt">--%>
+                    <%--<h4 class="event_txt_tit"><span>{{name}}</span>--%>
+                        <%--<small class="sm">{{placeName}}</small>--%>
+                    <%--</h4>--%>
+                    <%--<p class="event_txt_dsc">{{description}}</p>--%>
+                <%--</div>--%>
+            <%--</a>--%>
+        <%--</li>--%>
+    <%--</script>--%>
 </head>
 
 <body>
@@ -103,7 +115,7 @@
                 <li class="item" data-category="0">
                     <a class="anchor active"> <span>전체</span> </a>
                 </li>
-
+                <%-- templates/main/category-list.hbs --%>
             </ul>
         </div>
         <div class="section_event_lst">
@@ -111,10 +123,10 @@
             <div class="wrap_event_box">
                 <!-- [D] lst_event_box 가 2컬럼으로 좌우로 나뉨, 더보기를 클릭할때마다 좌우 ul에 li가 추가됨 -->
                 <ul class="lst_event_box left">
-
+                    <%-- templates/main/product-list.hbs --%>
                 </ul>
                 <ul class="lst_event_box right">
-
+                    <%-- templates/main/product-list.hbs --%>
                 </ul>
                 <!-- 더보기 -->
                 <div class="more">
@@ -134,13 +146,17 @@
     </div>
 </footer>
 </body>
-<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
+
+<script src="/resources/dist/main.bundle.js"></script>
+<%--<script src="/resources/js/mainPage.js"></script>--%>
+
+<!-- <script src="/resources/node_modules/jquery/dist/jquery.js"></script>
 <script src="/resources/js/module/ajaxModule.js"></script>
 <script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
 <script src="/resources/js/common/util.js"></script>
 <script src="/resources/js/mainProductList.js"></script>
 <script src="/resources/js/component/moveComponent.js"></script>
 <script src="/resources/js/component/rollingComponent.js"></script>
-<script src="/resources/js/mainPage.js"></script>
+<script src="/resources/js/mainPage.js"></script> -->
 
 </html>

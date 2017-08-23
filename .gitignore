@@ -139,3 +139,6 @@ package-lock.json
 
 # for intellij
 rebel.xml
+
+# build 
+dist/

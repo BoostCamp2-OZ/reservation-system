@@ -1,4 +1,9 @@
-var RollingComponent = extend(eg.Component, {
+var $ = require('jquery');
+var egComponent = require('@egjs/component');
+var MoveComponent = require('./moveComponent');
+var extend = require('../common/util');
+
+var RollingComponent = extend(egComponent, {
 
 
     init: function ($root, options) {
@@ -16,7 +21,7 @@ var RollingComponent = extend(eg.Component, {
 
         this._moveComponentInit();
         this._eventBind();
-        if(this.options.autoStart) this._autoStart();
+        if (this.options.autoStart) this._autoStart();
 
     },
 
@@ -28,7 +33,7 @@ var RollingComponent = extend(eg.Component, {
 
     _moveComponentInit: function () {
         this.mcInst = new MoveComponent($(this.slider), {
-            circulation : this.options.circulation
+            circulation: this.options.circulation
         });
         this.mcInst.on({
             'afterMove': this._updateStatus.bind(this),
@@ -58,7 +63,7 @@ var RollingComponent = extend(eg.Component, {
     _autoStart: function () {
         var options = this.options;
 
-        options.intervalTimer = setInterval(function(){
+        options.intervalTimer = setInterval(function () {
             this.mcInst.move('next');
         }.bind(this), 2000);
     },
@@ -72,11 +77,13 @@ var RollingComponent = extend(eg.Component, {
 
         clearTimeout(options.clickTimer);
 
-        if(options.autoStart) {
-            options.clickTimer = setTimeout(function() {
+        if (options.autoStart) {
+            options.clickTimer = setTimeout(function () {
                 this._autoStart();
             }.bind(this), 2000);
         }
     }
 
 });
+
+module.exports = RollingComponent;

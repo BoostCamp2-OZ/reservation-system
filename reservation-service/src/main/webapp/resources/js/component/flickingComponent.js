@@ -1,4 +1,9 @@
-var FlickingComponent = extend(eg.Component, {
+var $ = require('jquery');
+var egComponent = require('@egjs/component');
+var MoveComponent = require('./moveComponent');
+var extend = require('../common/util');
+
+var FlickingComponent = extend(egComponent, {
 
     init: function ($root, options) {
         this.$root = $root;
@@ -155,3 +160,5 @@ var FlickingComponent = extend(eg.Component, {
     }
 
 });
+
+module.exports = FlickingComponent;

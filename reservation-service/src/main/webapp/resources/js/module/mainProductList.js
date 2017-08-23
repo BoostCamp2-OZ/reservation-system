@@ -1,30 +1,25 @@
+var $ = require('jquery');
+var ajaxModule = require('./ajaxModule');
+
+var categoryTempl = require('../../templates/main/category-list.hbs');
+var productTempl = require('../../templates/main/product-list.hbs');
+
 var mainProductList = (function(){
 
-    var Templates = {};
     var $productContainer = $('.wrap_event_box');
     var activeIndex = 0;
 
-
     function init() {
         _eventBinding();
-        _handlebarInit();
         _getCategories();
         _getProducts();
     }
-
 
     function _eventBinding() {
 
         $('ul.event_tab_lst').on('click', 'a.anchor', _changeCategory);
         $('.more').on('click', '.btn', getMoreProducts);
     }
-
-
-    function _handlebarInit() {
-        Templates.category = Handlebars.compile($('#categoryTemplate').html());
-        Templates.product = Handlebars.compile($('#productTemplate').html());
-    }
-
 
     function _getProducts(offset) {
         if (offset === undefined) offset = 0;
@@ -39,8 +34,8 @@ var mainProductList = (function(){
         result.then(function(data) {
             _productRendering('html', data);
         }, function(err) {
-            alert('error:',err);
-        })
+            alert('error:' + err);
+        });
 
     }
 
@@ -56,7 +51,7 @@ var mainProductList = (function(){
         result.then(function(data) {
             _productRendering('append', data);
         }, function(err) {
-            alert('error:',err);
+            alert('error:' + err);
         })
     }
 
@@ -72,9 +67,9 @@ var mainProductList = (function(){
 
         for (var i = 0, l = products.length; i < l; i++) {
             if (i % 2) {
-                rightSection += Templates.product(products[i]);
+                rightSection += productTempl(products[i]);
             } else {
-                leftSection += Templates.product(products[i]);
+                leftSection += productTempl(products[i]);
             }
         }
 
@@ -87,7 +82,7 @@ var mainProductList = (function(){
 
 
     function _categoryRendering(data) {
-        $('ul.event_tab_lst').append(Templates.category(data));
+        $('ul.event_tab_lst').append(categoryTempl(data));
     }
 
 
@@ -105,7 +100,7 @@ var mainProductList = (function(){
 
 
     function _changeProductsCount(totalCount) {
-        $countText = $('.event_lst_txt span.pink');
+        var $countText = $('.event_lst_txt span.pink');
         $countText.text(totalCount + '개');
     }
 
@@ -120,7 +115,7 @@ var mainProductList = (function(){
         result.then(function(data) {
             _categoryRendering(data);
         }, function(err) {
-            alert('error:', err);
+            alert('error:' + err);
         });
     }
 
@@ -131,3 +126,6 @@ var mainProductList = (function(){
     }
 
 })();
+
+
+module.exports = mainProductList;
