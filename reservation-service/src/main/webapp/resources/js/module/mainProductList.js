@@ -76,8 +76,36 @@ var mainProductList = (function(){
         $leftSection[type](leftSection);
         $rightSection[type](rightSection);
 
+        _settingIntersectionObserver();
         _changeProductsCount(totalCount);
 
+    }
+
+    function _settingIntersectionObserver() {
+
+        var io = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                var target = entry.target;
+                var $lazyImg = $(target).find('img');
+
+                if ( $lazyImg.data('lazy-img') ){
+                    var source = $lazyImg.data('lazy-img');
+                    $lazyImg.attr('src', source);
+                    $lazyImg.removeAttr('data-lazy-img');
+
+                    observer.unobserve(target);
+                }
+
+            });
+        }, $productContainer);
+
+        Array.from($productContainer.find('li.item')).forEach(function (el) {
+            io.observe(el);
+        });
     }
 
 
