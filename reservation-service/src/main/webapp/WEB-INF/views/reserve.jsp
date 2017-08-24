@@ -167,11 +167,4 @@
 </footer>
 </body>
 <script src="/resources/dist/app.bundle.js"></script>
-<%--<script src="/resources/node_modules/jquery/dist/jquery.js"></script>--%>
-<%--<script src="/resources/js/module/ajaxModule.js"></script>--%>
-<%--<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>--%>
-<%--<script src="/resources/js/common/util.js"></script>--%>
-<%--<script src="/resources/js/component/TicketCount.js"></script>--%>
-<%--<script src="/resources/js/checkReservable.js"></script>--%>
-<%--<script src="/resources/js/reservePage.js"></script>--%>
 </html>

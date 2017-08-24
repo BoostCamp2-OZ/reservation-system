@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var egComponent = require('@egjs/component');
 var MoveComponent = require('./moveComponent');
 var extend = require('../common/util');

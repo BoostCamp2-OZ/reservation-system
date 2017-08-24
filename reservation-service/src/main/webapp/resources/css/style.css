@@ -1338,23 +1338,12 @@ button {
     text-overflow: ellipsis
 }
 
-@media screen and (max-width: 320px) {
-    .group_visual .visual_img .item .visual_txt .visual_txt_tit {
-        margin-bottom:6px;
-        padding-left: 40px;
-        padding-right: 40px;
-        font-size: 24px;
-        line-height: 29px;
-        letter-spacing: 1px
-    }
-}
-
 .group_visual .visual_img .item .visual_txt .visual_txt_dsc {
     padding-left: 34px;
     padding-right: 34px;
     font-size: 18px;
     line-height: 26px;
-    text-shadow: 0 0 2px rgba(0,0,0,.2);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .2);
     display: block;
     display: -webkit-box;
     overflow: hidden;
@@ -1362,15 +1351,6 @@ button {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis
-}
-
-@media screen and (max-width: 320px) {
-    .group_visual .visual_img .item .visual_txt .visual_txt_dsc {
-        padding-left:44px;
-        padding-right: 44px;
-        font-size: 15px;
-        line-height: 21px
-    }
 }
 
 .group_visual .nxt:before,.group_visual .prev:before {
@@ -2592,13 +2572,6 @@ button {
     color: #bcff85
 }
 
-@media screen and (max-width: 320px) {
-    .section_my .my_summary .summary_board .item .link_summary_board .spr_book2 {
-        display:block;
-        margin: 0 auto
-    }
-}
-
 .section_my .my_summary .summary_board .item .link_summary_board.on .ico_book2 {
     width: 15px;
     height: 15px;
@@ -2971,12 +2944,6 @@ button {
     box-sizing: border-box
 }
 
-@media screen and (max-width: 320px) {
-    .event .section_visual .group_visual .container_visual .visual_img .item {
-        height:177px
-    }
-}
-
 .event .section_visual .group_visual .container_visual .visual_img .item .event_txt {
     position: absolute;
     bottom: 12px;
@@ -3029,12 +2996,6 @@ button {
     z-index: 15
 }
 
-@media screen and (max-width: 320px) {
-    .event .section_visual .group_visual .container_visual .prev_e {
-        left:235px
-    }
-}
-
 .event .section_visual .group_visual .container_visual .prev_e .prev_inn {
     height: 35px;
     position: absolute;
@@ -3059,12 +3020,6 @@ button {
     width: 35px;
     height: 100%;
     z-index: 15
-}
-
-@media screen and (max-width: 320px) {
-    .event .section_visual .group_visual .container_visual .nxt_e {
-        left:270px
-    }
 }
 
 .event .section_visual .group_visual .container_visual .nxt_e .nxt_inn {

@@ -1,15 +1,14 @@
-// webpack.config.js
 var path = require('path');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+// var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        main : ['./js/mainPage.js'],
-        detail : ['./js/detailPage.js'],
-        my : ['./js/myReservation.js'],
-        reserve : ['./js/reservePage.js']
+        main: ['./js/mainPage.js'],
+        detail: ['./js/detailPage.js'],
+        my: ['./js/myReservation.js'],
+        reserve: ['./js/reservePage.js']
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -20,10 +19,15 @@ module.exports = {
             {
                 test: /\.hbs$/,
                 loader: "handlebars-template-loader"
+            },
+            {
+                test: /\.css$/,
+                // loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             }
         ]
     },
     plugins: [
-        new UglifyJSPlugin()
+        new UglifyJSPlugin(),
+        new ExtractTextPlugin("[name].css")
     ]
-}
+};

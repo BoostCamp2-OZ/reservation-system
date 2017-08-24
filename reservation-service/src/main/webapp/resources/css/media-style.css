@@ -1,0 +1,46 @@
+@media screen and (max-width: 320px) {
+    .event .section_visual .group_visual .container_visual .nxt_e {
+        left:270px
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .group_visual .visual_img .item .visual_txt .visual_txt_tit {
+        margin-bottom:6px;
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: 1px
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .group_visual .visual_img .item .visual_txt .visual_txt_dsc {
+        padding-left:44px;
+        padding-right: 44px;
+        font-size: 15px;
+        line-height: 21px
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .section_my .my_summary .summary_board .item .link_summary_board .spr_book2 {
+        display:block;
+        margin: 0 auto
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .event .section_visual .group_visual .container_visual .visual_img .item {
+        height:177px
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .event .section_visual .group_visual .container_visual .prev_e {
+        left:235px
+    }
+}

@@ -189,12 +189,4 @@
 
 </body>
 <script src="/resources/dist/my.bundle.js"></script>
-<%--<script src="/resources/node_modules/jquery/dist/jquery.js"></script>--%>
-<%--<script src="/resources/node_modules/moment/moment.js"></script>--%>
-<%--<script src="/resources/js/common/util.js"></script>--%>
-<%--<script src="/resources/js/module/ajaxModule.js"></script>--%>
-<%--<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>--%>
-<%--<script src="/resources/js/component/summaryBoard.js"></script>--%>
-<%--<script src="/resources/js/module/myReservationList.js"></script>--%>
-<%--<script src="/resources/js/myReservation.js"></script>--%>
 </html>
