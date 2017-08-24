@@ -63,13 +63,13 @@ $(function () {
 
         var result = ajaxModule.ajax({
             url: '/api/reservations',
-            type: 'POST',
-            data: JSON.stringify(data),
+            method: 'POST',
+            data: data,
             contentType: 'application/json'
         });
 
         result.done(function() {
-            location.href = 'reservations/my';
+            location.href = '/reservations/my';
         });
 
         result.catch(function(err) {

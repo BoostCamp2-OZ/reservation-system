@@ -7,15 +7,12 @@ var CommentList = (function () {
 
     var $commentSummary = $('div.grade_area');
 
-    // var source = $('#commentTemplate').html();
-    // var commentTemplate = Handlebars.compile(source);
-
     function init() {
         getComments();
     }
 
     function getComments() {
-        var productId = $commentSummary.data('product-id');
+        var productId = $('.group_visual').data('product-id');
         var offset = $('.list_short_review').find('li').length;
 
         var result = ajaxModule.ajax({
@@ -45,7 +42,7 @@ var CommentList = (function () {
     }
 
     function formattingDate(createDate) {
-        return moment(createDate).format('YYYY.MM.DD. 방문');
+        return moment(createDate).format('YYYY.MM.DD');
     }
 
     function renderingCommentsSummary(commentsSummary) {

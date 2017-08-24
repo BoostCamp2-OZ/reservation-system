@@ -5,7 +5,7 @@ var CommentList = require('./module/commentList');
 
 var popupTemplate = require('../templates/comments/popup-photo-list.hbs');
 
-(function () {
+$(function () {
 
     var mainFlicking = new FlickingComponent($('div.section_visual'));
     var popupFlicking = null;
@@ -117,5 +117,5 @@ var popupTemplate = require('../templates/comments/popup-photo-list.hbs');
     init();
     CommentList.init();
 
-})();
+});
 
