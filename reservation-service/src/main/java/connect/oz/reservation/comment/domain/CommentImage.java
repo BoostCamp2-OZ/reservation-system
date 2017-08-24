@@ -4,6 +4,15 @@ public class CommentImage {
     private Long id;
     private Long reservationUserCommentId;
     private Long fileId;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public Long getId() {
         return id;

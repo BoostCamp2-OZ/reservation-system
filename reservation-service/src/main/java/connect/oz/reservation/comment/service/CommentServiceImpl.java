@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,15 +51,20 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public Long insertComment(CommentInsertDto commentInsertDto)  {
         //리뷰 이미지 파일 업로드
-        List<Long> fileIdList = fileService.uploadFile(commentInsertDto.getUserId(),commentInsertDto.getFiles());
+        Map<Long,Integer> fileIdList = fileService.uploadFile(commentInsertDto.getUserId(),commentInsertDto.getFiles());
         //리뷰 테이블 초기화
         long commentId = commentDao.insertComment(commentInsertDto);
         //리뷰 이미지 테이블 초기화
         CommentImage commentImage = new CommentImage();
         commentImage.setReservationUserCommentId(commentId);
 
-        for(int i=0; i < fileIdList.size(); i++){
-            commentImage.setFileId(fileIdList.get(i));
+        for(Long key : fileIdList.keySet()) {
+            commentImage.setFileId(key);
+            if(fileIdList.get(key) == 2){
+                commentImage.setType(2);
+            }else{
+                commentImage.setType(1);
+            }
             commentDao.insertCommentImage(commentImage);
         }
 

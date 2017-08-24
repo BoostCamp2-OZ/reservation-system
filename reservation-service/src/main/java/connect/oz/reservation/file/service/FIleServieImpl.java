@@ -2,6 +2,8 @@ package connect.oz.reservation.file.service;
 
 import connect.oz.reservation.file.dao.FileDao;
 import connect.oz.reservation.file.domain.FileDomain;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -36,8 +38,8 @@ public class FIleServieImpl implements FileService {
 
     @Override
     @Transactional
-    public List<Long> uploadFile(long userId, MultipartFile[] files)  {
-        List<Long> fileIdList = new ArrayList<>();
+    public Map<Long, Integer> uploadFile(long userId, MultipartFile[] files)  {
+        Map<Long, Integer> fileIdList = new HashMap<Long, Integer>();
 
         files.toString();
 
@@ -69,9 +71,11 @@ public class FIleServieImpl implements FileService {
             String now = formatter.format(cal.getTime());
             f.setCreateDate(Timestamp.valueOf(now));
 
-            fileIdList.add(fileDao.insert(f));
+            fileIdList.put(fileDao.insert(f),1);
 
             // try-with-resource 구문. close()를 할 필요가 없다. java 7 이상에서 가능
+
+
             try (InputStream in = file.getInputStream();
                  FileOutputStream fos = new FileOutputStream(saveFileName)) {
                 int readCount = 0;
@@ -81,9 +85,21 @@ public class FIleServieImpl implements FileService {
                     fos.write(buffer, 0, readCount);
                 }
 
+                //썸네일
+                Thumbnails.of(new File(saveFileName))
+                        .size(90, 90)
+                        .outputFormat("jpg")
+                        .toFiles(Rename.SUFFIX_DOT_THUMBNAIL);
+
+                saveFileName += ".thumbnail.jpg";
+                f.setSaveFileName(saveFileName);
+                f.setType(2);
+                fileIdList.put(fileDao.insert(f),2);
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+
         }
         return fileIdList;
     }

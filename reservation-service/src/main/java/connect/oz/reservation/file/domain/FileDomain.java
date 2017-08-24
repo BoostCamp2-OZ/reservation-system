@@ -12,6 +12,15 @@ public class FileDomain {
     private int deleteFlag;
     private Timestamp createDate;
     private Timestamp modifyDate;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public long getId() {
         return id;

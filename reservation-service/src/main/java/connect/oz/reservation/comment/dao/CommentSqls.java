@@ -5,7 +5,7 @@ public class CommentSqls {
     final static String SELECT_COMMENT_IMAGES =
             "SELECT RUCI.file_id"
                     + " FROM reservation_user_comment_image AS RUCI"
-                    + " WHERE RUCI.reservation_user_comment_id = :commentId"
+                    + " WHERE RUCI.reservation_user_comment_id = :commentId AND RUCI.type = 1"
                     + " ORDER BY RUCI.file_id DESC";
 
     final static String SELECT_COMMENTS =
@@ -14,7 +14,7 @@ public class CommentSqls {
                     " U.username" +
                     " FROM reservation_user_comment AS RUC" +
                     " JOIN users AS U ON U.id = RUC.user_id" +
-                    " LEFT JOIN reservation_user_comment_image AS RUCI ON RUC.id = RUCI.reservation_user_comment_id" +
+                    " LEFT JOIN reservation_user_comment_image AS RUCI ON RUCI.type = 2 AND RUC.id = RUCI.reservation_user_comment_id" +
                     " WHERE product_id = :productId" +
                     " GROUP BY RUC.id" +
                     " ORDER BY RUC.id DESC LIMIT :offset, :limit";
