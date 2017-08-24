@@ -25,6 +25,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- 이미지 압축 thumbnailator-->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>[0.4, 0.5)</version>
+		</dependency>
 		<!-- spring framework -->
 		<dependency>
 			<groupId>org.json</groupId>
