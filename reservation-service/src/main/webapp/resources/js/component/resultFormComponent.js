@@ -1,4 +1,8 @@
-var ResultFormComponent = extend(eg.Component,{
+var $ = require('jquery');
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+
+var ResultFormComponent = extend(egComponent,{
 
 
     init : function ($root, options){
@@ -44,7 +48,7 @@ var ResultFormComponent = extend(eg.Component,{
         });
 
         afterRegister.done(function(res) {
-            if(res > 0) location.href = '/my';
+            if(res > 0) location.href = '/reservations/my';
         });
 
         afterRegister.fail(function(err) {
@@ -57,3 +61,5 @@ var ResultFormComponent = extend(eg.Component,{
     }
 
 });
+
+module.exports = ResultFormComponent;

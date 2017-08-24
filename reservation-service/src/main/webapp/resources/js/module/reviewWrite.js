@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 var Comment = (function () {
 
     var $root = $('div.review_contents');
@@ -39,3 +41,5 @@ var Comment = (function () {
         getComment : getComment
     }
 })();
+
+module.exports = Comment;

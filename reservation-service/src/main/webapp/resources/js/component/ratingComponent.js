@@ -1,4 +1,8 @@
-var RatingComponent = extend(eg.Component, {
+var $ = require('jquery');
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+
+var RatingComponent = extend(egComponent, {
 
     init: function ($root, options) {
         this.options = {
@@ -46,5 +50,6 @@ var RatingComponent = extend(eg.Component, {
         return this.score;
     }
 
-
 });
+
+module.exports = RatingComponent;

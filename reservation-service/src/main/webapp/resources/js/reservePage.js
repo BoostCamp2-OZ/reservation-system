@@ -1,3 +1,8 @@
+var $ = require('jquery');
+var ajaxModule = require('./module/ajaxModule');
+var checkReservable = require('./module/checkReservable');
+var TicketCount = require('./component/TicketCount');
+
 $(function () {
 
     var ticketCounts = [];
@@ -55,19 +60,22 @@ $(function () {
 
         var data = makeReservationData(e);
         console.log(data);
-        $.ajax({
+
+        var result = ajaxModule.ajax({
             url: '/api/reservations',
             type: 'POST',
             data: JSON.stringify(data),
-            contentType: 'application/json',
-            success: function () {
-                alert('예약완료!');
-                //location.href="/myreservations"; //나의 예약페이지로 이동
-            },
-            fail : function(){
-                alert('예약실패, 다시시도해주세요..')
-            }
+            contentType: 'application/json'
         });
+
+        result.done(function() {
+            location.href = 'reservations/my';
+        });
+
+        result.catch(function(err) {
+            console.error('err : ' + err);
+        });
+
     }
 
 

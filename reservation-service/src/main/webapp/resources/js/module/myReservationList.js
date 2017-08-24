@@ -155,7 +155,7 @@ var ReservationList = extend(egComponent, {
         var ticket = this._getTicketOfFilteredList(bookingId);
 
         if (ticket.item.reservationType === 3) {
-            location.href = '/reviewWrite/' + ticket.item.pid;
+            location.href = '/comments/reviewWrite/' + ticket.item.pid;
         } else {
             $popupTitle.text(name);
             $popupScedule.text(scedule);

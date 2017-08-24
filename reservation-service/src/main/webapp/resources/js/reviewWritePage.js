@@ -1,3 +1,9 @@
+var $ = require('jquery');
+var RatingComponent = require('./component/ratingComponent');
+var ImageUploadComponent = require('./component/imageUploadComponent');
+var ResultFormComponent = require('./component/resultFormComponent');
+var Comment = require('./module/reviewWrite');
+
 $(function () {
 
     var ratingComponent = new RatingComponent($('div.rating'));
@@ -6,20 +12,18 @@ $(function () {
 
     var imageUploadComponent = new ImageUploadComponent($('.review_write_footer_wrap'));
 
-    $('.box_bk_btn').on('click', '.bk_btn', function (e) {
+    $('.box_bk_btn').on('click', '.bk_btn', function () {
+
         var score = ratingComponent.getScore() || 0;
-        console.log(score);
         var comment = Comment.getComment() || '';
-        console.log(comment);
         var images = imageUploadComponent.getImage() || [];
-        console.log(images);
 
         var resultForm = new ResultFormComponent($('.box_bk_btn'), {
-            score : score,
-            comment : comment,
-            images : images,
-
+            score: score,
+            comment: comment,
+            images: images
         });
+
     });
 
 });

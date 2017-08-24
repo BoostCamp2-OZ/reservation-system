@@ -8,7 +8,9 @@ module.exports = {
         main: ['./js/mainPage.js'],
         detail: ['./js/detailPage.js'],
         my: ['./js/myReservation.js'],
-        reserve: ['./js/reservePage.js']
+        reserve: ['./js/reservePage.js'],
+        review: ['./js/reviewPage.js'],
+        reviewWrite: ['./js/reviewWritePage.js']
     },
     output: {
         path: path.join(__dirname, 'dist'),

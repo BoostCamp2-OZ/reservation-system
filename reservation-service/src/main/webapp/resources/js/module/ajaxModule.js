@@ -14,7 +14,7 @@ var ajaxModule = (function () {
                 url: options.url,
                 method: options.method || 'GET',
                 data: JSON.stringify(options.data) || null,
-                contentType: 'application/json'
+                contentType: options.contentType || 'application/json',
 
             }).then(function (json) {
                 return cachedData[options.url] = json;
@@ -22,8 +22,19 @@ var ajaxModule = (function () {
         }
     }
 
+    function formDataAjax(options) {
+        return $.ajax({
+            url: options.url,
+            method: options.method || 'POST',
+            data : this.formData,
+            contentType: options.contentType || 'application/json',
+            processData : options.processData || true
+        });
+    }
+
     return {
-        ajax: cachingAjax
+        ajax: cachingAjax,
+        formData: formDataAjax
     }
 })();
 
