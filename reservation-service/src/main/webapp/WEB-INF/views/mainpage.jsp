@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="/resources/dist/style.css" rel="stylesheet">
-    <link href="/resources/dist/media-style.css" rel="stylesheet" media="(max-width: 320px)">
+    <link href="/resources/dist/media-style.css" rel="stylesheet" media="handheld">
 </head>
 
 <body>

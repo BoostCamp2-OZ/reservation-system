@@ -13,30 +13,8 @@
     <meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
-    <link href="/resources/css/style.css" rel="stylesheet">
-    <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script id="commentTemplate" type="template/x-handlebars">
-        {{#each comments}}
-        <li class="list_item">
-            <div>
-                <div class="review_area" data-product-id='{{lookup ../this.commentsSummary "productId"}}'>
-                    <div class="thumb_area" data-comment-id="{{id}}">
-                        {{#if fileId}}
-                        <a href="#" class="thumb" title="이미지 크게 보기">
-                            <img width="90" height="90" class="img_vertical_top" src="/files/{{fileId}}" alt="리뷰이미지"> </a>
-                        <span class="img_count">{{imageCount}}</span>
-                        {{/if}}
-                    </div>
-                    <h4 class="resoc_name">{{lookup ../this.commentsSummary "productName"}}</h4>
-                    <p class="review">{{comment}}</p>
-                </div>
-                <div class="info_area">
-                    <div class="review_info"> <span class="grade">{{score}}</span> <span class="name">{{userName}}</span> <span class="date">{{createDate}}</span> </div>
-                </div>
-            </div>
-        </li>
-        {{/each}}
-    </script>
+    <link href="/resources/dist/style.css" rel="stylesheet">
+    <link href="/resources/dist/media-style.css" rel="stylesheet" media="handheld">
 </head>
 
 <body>
@@ -111,10 +89,5 @@
     </div>
 </footer>
 </body>
-<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
-<script src="/resources/node_modules/moment/moment.js"></script>
-<script src="/resources/js/module/ajaxModule.js"></script>
-<script src="/resources/js/module/commentList.js"></script>
-<script src="/resources/js/reviewPage.js"></script>
-
+<script src="/resources/dist/review.bundle.js"></script>
 </html>

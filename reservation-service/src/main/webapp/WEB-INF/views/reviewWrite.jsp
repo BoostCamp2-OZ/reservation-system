@@ -11,24 +11,9 @@
     <meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
-    <link href="/resources/css/style.css" rel="stylesheet">
-    <script src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script id="reviewImageTemplate" type="text/x-handlears-template">
-        {{#each this}}
-        <li class="item">
-            <a href="#" class="anchor">
-                <span class="spr_book ico_del">삭제</span>
-            </a>
-            <img src="{{this}}" width="130" alt="" class="item_thumb">
-            <span class="img_border"></span>
-        </li>
-        {{/each}}
-    </script>
+    <link href="/resources/dist/style.css" rel="stylesheet">
+    <link href="/resources/dist/media-style.css" rel="stylesheet" media="handheld">
 </head>
-
-
-
-
 
 <body>
 <div id="container">
@@ -133,14 +118,5 @@
     </div>
 </footer>
 </body>
-<script src="/resources/node_modules/jquery/dist/jquery.js"></script>
-<script src="/resources/js/common/util.js"></script>
-<script src="/resources/node_modules/@egjs/component/dist/component.js"></script>
-<script src="/resources/js/component/ratingComponent.js"></script>
-<script src="/resources/js/module/reviewWrite.js"></script>
-<script src="/resources/js/component/imageUploadComponent.js"></script>
-<script src="/resources/js/component/resultFormComponent.js"></script>
-<script src="/resources/js/reviewWritePage.js"></script>
-
-
+<script src="/resources/dist/reviewWrite.bundle.js"></script>
 </html>

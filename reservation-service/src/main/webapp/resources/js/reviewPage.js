@@ -1,3 +1,5 @@
+var CommentList = require('./module/commentList');
+
 $(function () {
     var $document = $(document);
     var $window = $(window);

@@ -1,10 +1,12 @@
-var ImageUploadComponent = extend(eg.Component, {
+var $ = require('jquery');
+var egComponent = require('@egjs/component');
+var extend = require('../common/util');
+var reviewTumbnailTempl = require('../../templates/review/thumb-image.hbs');
 
-
+var ImageUploadComponent = extend(egComponent, {
 
     init: function ($root, options) {
         this.options = Object.assign({}, this.options, options);
-        this.reviewImageTemplate = Handlebars.compile($('#reviewImageTemplate').html());
 
         this.$root = $root;
         this.$imageContainer = $root.find('.lst_thumb');
@@ -29,7 +31,7 @@ var ImageUploadComponent = extend(eg.Component, {
             reader.onload = (function(e) {
                 var test = {};
                 test.data = e.target.result;
-                this.$imageContainer.append(this.reviewImageTemplate(test));
+                this.$imageContainer.append(reviewTumbnailTempl(test));
             }.bind(this));
             reader.readAsDataURL(file);
             this.images.push(file);
@@ -52,5 +54,5 @@ var ImageUploadComponent = extend(eg.Component, {
 
 });
 
-
+module.exports = ImageUploadComponent;
 

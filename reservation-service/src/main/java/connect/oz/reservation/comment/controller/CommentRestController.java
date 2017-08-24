@@ -49,13 +49,13 @@ public class CommentRestController {
     }
 
     @PostMapping
-    public void registerReview(@ModelAttribute CommentInsertDto commentInsertDto, @RequestParam(name="file") MultipartFile[] files, HttpSession session)  {
+    public Long registerReview(@ModelAttribute CommentInsertDto commentInsertDto, @RequestParam(name="file") MultipartFile[] files, HttpSession session)  {
         Users users = (Users) session.getAttribute("loginedUser");
         commentInsertDto.setFiles(files);
         commentInsertDto.setUserId(users.getId());
 
         logger.info("dto : {}", commentInsertDto);
 
-        commentService.insertComment(commentInsertDto);
+        return commentService.insertComment(commentInsertDto);
     }
 }
